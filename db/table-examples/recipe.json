@@ -1,0 +1,26 @@
+{
+  "cookbook": "Everyday Italian",
+  "name": "Classic Italian Lasagna",
+  "page": 75,
+  "image": "lasagna.jpg",
+  "comments": [
+    "Tip: Make the marinara and béchamel sauces (recipes also in book) ahead of time."
+    "Make sure the squeeze out all the water from the frozen spinach or the lasagna might be too runny.",
+    "Great for leftovers!"
+  ],
+  "memberId": 1
+},
+{
+  "cookbook": "Everyday Italian",
+  "name": "Lemon Ricotta Cookies",
+  "url": "http://www.foodnetwork.com/recipes/giada-de-laurentiis/lemon-ricotta-cookies-with-lemon-glaze-recipe.html"
+},
+{
+  "cookbook": "Skinnytaste",
+  "name": "Super Moist Carrot Cake with Cream Cheese Frosting",
+  "url": "http://www.skinnytaste.com/super-moist-carrot-cake-with-cream/",
+  "image": "cupcakes.jpg",
+  "comments": [
+    "Instead of making a cake, I made cupcakes out of this recipe"
+  ]
+}
