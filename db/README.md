@@ -4,3 +4,6 @@
 3. Go to the folder:  `cd Applications/dynamodb_local_2016-05-17/`
 4. Start up the DB instance: `java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb`
 5. To view the DynamoDBLocal shell: http://localhost:8000/shell/
+
+## Resources
+Data Types:  http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBMapper.DataTypes.html
