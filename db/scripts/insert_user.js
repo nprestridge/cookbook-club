@@ -5,7 +5,7 @@ var users = {
       {
         PutRequest: {
           Item: {
-            Id: 1,
+            Email: 'nancy@mail.com',
             FirstName: 'Nancy'
           }
         }
@@ -13,7 +13,7 @@ var users = {
       {
         PutRequest: {
           Item: {
-            Id: 2,
+            Email: 'nadine@mail.com',
             FirstName: 'Nadine'
           }
         }

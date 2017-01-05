@@ -12,7 +12,7 @@ dynamodb.scan(allUsers, function(err, data) {
 var getUser = {
   TableName: 'User',
   Key: { // a map of attribute name to AttributeValue for all primary key attributes
-    Id: 1,
+    Email: 'nancy@mail.com',
   }
 };
 

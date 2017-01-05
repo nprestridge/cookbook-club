@@ -3,7 +3,7 @@ var params = {
   TableName: 'User',
   KeySchema: [ // The type of of schema.  Must start with a HASH type, with an optional second RANGE.
     { // Required HASH type attribute
-      AttributeName: 'Id',
+      AttributeName: 'Email',
       KeyType: 'HASH',
     }
   ],
@@ -27,8 +27,8 @@ var params = {
   ],
   AttributeDefinitions: [ // The names and types of all primary and index key attributes only
     {
-      AttributeName: 'Id',
-      AttributeType: 'N', // (S | N | B) for string, number, binary
+      AttributeName: 'Email',
+      AttributeType: 'S', // (S | N | B) for string, number, binary
     },
     {
       AttributeName: 'FirstName',
