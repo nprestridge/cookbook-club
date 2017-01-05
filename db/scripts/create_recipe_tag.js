@@ -7,16 +7,16 @@ var params = {
       KeyType: 'HASH',
     },
     { // Optional RANGE key type for HASH + RANGE tables
-      AttributeName: 'RecipeId',
+      AttributeName: 'CookbookRecipe',
       KeyType: 'RANGE',
     }
   ],
   GlobalSecondaryIndexes: [
     {
-      IndexName: 'RecipeIndex',
+      IndexName: 'CookbookRecipeIndex',
       KeySchema: [
         {
-          AttributeName: 'RecipeId',
+          AttributeName: 'CookbookRecipe',
           KeyType: 'HASH'
         }
       ],
@@ -35,8 +35,8 @@ var params = {
       AttributeType: 'S', // (S | N | B) for string, number, binary
     },
     {
-      AttributeName: 'RecipeId',
-      AttributeType: 'N', // (S | N | B) for string, number, binary
+      AttributeName: 'CookbookRecipe',
+      AttributeType: 'S', // (S | N | B) for string, number, binary
     }
   ],
   ProvisionedThroughput: { // required provisioned throughput for the table

@@ -25,10 +25,10 @@ docClient.query(recipesByTag, function(err, data) {
 /* Get all tags by recipe */
 var recipeTags = {
   TableName : "RecipeTag",
-  IndexName: "RecipeIndex",
-  KeyConditionExpression: "RecipeId = :id",
+  IndexName: "CookbookRecipeIndex",
+  KeyConditionExpression: "CookbookRecipe = :id",
   ExpressionAttributeValues: {
-    ":id": 2
+    ":id": "EverydayItalian-LemonRicottaCookies"
   },
 };
 

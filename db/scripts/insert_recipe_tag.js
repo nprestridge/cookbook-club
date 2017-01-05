@@ -6,7 +6,7 @@ var tags = {
         PutRequest: {
           Item: {
             Tag: 'italian',
-            RecipeId: 1
+            CookbookRecipe: 'EverydayItalian-ClassicItalianLasagna'
           }
         }
       },
@@ -14,7 +14,7 @@ var tags = {
         PutRequest: {
           Item: {
             Tag: 'marinara',
-            RecipeId: 1
+            CookbookRecipe: 'EverydayItalian-ClassicItalianLasagna'
           }
         }
       },
@@ -22,7 +22,7 @@ var tags = {
         PutRequest: {
           Item: {
             Tag: 'ricotta',
-            RecipeId: 1
+            CookbookRecipe: 'EverydayItalian-ClassicItalianLasagna'
           }
         }
       },
@@ -30,7 +30,7 @@ var tags = {
         PutRequest: {
           Item: {
             Tag: 'beef',
-            RecipeId: 1
+            CookbookRecipe: 'EverydayItalian-ClassicItalianLasagna'
           }
         }
       },
@@ -38,7 +38,7 @@ var tags = {
         PutRequest: {
           Item: {
             Tag: 'lasagna',
-            RecipeId: 1
+            CookbookRecipe: 'EverydayItalian-ClassicItalianLasagna'
           }
         }
       },
@@ -46,7 +46,7 @@ var tags = {
         PutRequest: {
           Item: {
             Tag: 'cheese',
-            RecipeId: 1
+            CookbookRecipe: 'EverydayItalian-ClassicItalianLasagna'
           }
         }
       },
@@ -54,7 +54,7 @@ var tags = {
         PutRequest: {
           Item: {
             Tag: 'ricotta',
-            RecipeId: 2
+            CookbookRecipe: 'EverydayItalian-LemonRicottaCookies'
           }
         }
       },
@@ -62,7 +62,7 @@ var tags = {
         PutRequest: {
           Item: {
             Tag: 'cookies',
-            RecipeId: 2
+            CookbookRecipe: 'EverydayItalian-LemonRicottaCookies'
           }
         }
       },
@@ -70,7 +70,7 @@ var tags = {
         PutRequest: {
           Item: {
             Tag: 'lemon',
-            RecipeId: 2
+            CookbookRecipe: 'EverydayItalian-LemonRicottaCookies'
           }
         }
       },
@@ -78,7 +78,7 @@ var tags = {
         PutRequest: {
           Item: {
             Tag: 'italian',
-            RecipeId: 2
+            CookbookRecipe: 'EverydayItalian-LemonRicottaCookies'
           }
         }
       },
@@ -86,7 +86,7 @@ var tags = {
         PutRequest: {
           Item: {
             Tag: 'dessert',
-            RecipeId: 2
+            CookbookRecipe: 'EverydayItalian-LemonRicottaCookies'
           }
         }
       },
@@ -94,7 +94,7 @@ var tags = {
         PutRequest: {
           Item: {
             Tag: 'cupcakes',
-            RecipeId: 3
+            CookbookRecipe: 'Skinnytaste-SuperMoistCarrotCakewithCreamCheeseFrosting'
           }
         }
       },
@@ -102,7 +102,7 @@ var tags = {
         PutRequest: {
           Item: {
             Tag: 'cream cheese',
-            RecipeId: 3
+            CookbookRecipe: 'Skinnytaste-SuperMoistCarrotCakewithCreamCheeseFrosting'
           }
         }
       },
@@ -110,7 +110,7 @@ var tags = {
         PutRequest: {
           Item: {
             Tag: 'dessert',
-            RecipeId: 3
+            CookbookRecipe: 'Skinnytaste-SuperMoistCarrotCakewithCreamCheeseFrosting'
           }
         }
       },
@@ -118,7 +118,7 @@ var tags = {
         PutRequest: {
           Item: {
             Tag: 'carrot',
-            RecipeId: 3
+            CookbookRecipe: 'Skinnytaste-SuperMoistCarrotCakewithCreamCheeseFrosting'
           }
         }
       },
