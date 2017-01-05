@@ -5,6 +5,30 @@ var users = {
       {
         PutRequest: {
           Item: {
+            Email: 'kathy@mail.com',
+            FirstName: 'kathy'
+          }
+        }
+      },
+      {
+        PutRequest: {
+          Item: {
+            Email: 'kristine@mail.com',
+            FirstName: 'Krisine'
+          }
+        }
+      },
+      {
+        PutRequest: {
+          Item: {
+            Email: 'lisa@mail.com',
+            FirstName: 'Lisa'
+          }
+        }
+      },
+      {
+        PutRequest: {
+          Item: {
             Email: 'nancy@mail.com',
             FirstName: 'Nancy'
           }
@@ -15,6 +39,14 @@ var users = {
           Item: {
             Email: 'nadine@mail.com',
             FirstName: 'Nadine'
+          }
+        }
+      },
+      {
+        PutRequest: {
+          Item: {
+            Email: 'tammy@mail.com',
+            FirstName: 'Tammy'
           }
         }
       },

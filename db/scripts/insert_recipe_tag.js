@@ -121,6 +121,14 @@ var tags = {
             CookbookRecipe: 'Skinnytaste-SuperMoistCarrotCakewithCreamCheeseFrosting'
           }
         }
+      },,
+      {
+        PutRequest: {
+          Item: {
+            Tag: 'cake',
+            CookbookRecipe: 'Skinnytaste-SuperMoistCarrotCakewithCreamCheeseFrosting'
+          }
+        }
       },
     ],
     // ... more tables ...

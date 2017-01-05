@@ -62,6 +62,16 @@ var books = {
           }
         }
       },
+      {
+        PutRequest: {
+          Item: {
+            Title: 'Smitten Kitchen',
+            Author: 'Deb Perelman',
+            MeetingDate: '2017-28-01',
+            Url: 'https://smittenkitchen.com'
+          }
+        }
+      },
       // ... more put or delete requests ...
     ],
     // ... more tables ...
