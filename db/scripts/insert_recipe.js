@@ -14,8 +14,7 @@ var recipes = {
               'Make sure the squeeze out all the water from the frozen spinach or the lasagna might be too runny.',
               'Great for leftovers!'
             ],
-            RecipeId: 1,
-            UserId: 1
+            UserEmail: 'nancy@mail.com'
           }
         }
       },
@@ -25,8 +24,7 @@ var recipes = {
             Cookbook: 'Everyday Italian',
             Name: 'Lemon Ricotta Cookies',
             Url: 'http://www.foodnetwork.com/recipes/giada-de-laurentiis/lemon-ricotta-cookies-with-lemon-glaze-recipe.html',
-            RecipeId: 2,
-            UserId: 2
+            UserEmail: 'nadine@mail.com'
           }
         }
       },
@@ -40,8 +38,7 @@ var recipes = {
             Comments: [
               'Instead of making a cake, I made cupcakes.'
             ],
-            RecipeId: 3,
-            UserId: 1
+            UserEmail: 'nancy@mail.com'
           }
         }
       },

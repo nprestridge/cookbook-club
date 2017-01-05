@@ -13,10 +13,10 @@ var params = {
   ],
   GlobalSecondaryIndexes: [
     {
-      IndexName: 'UserIndex',
+      IndexName: 'UserEmailIndex',
       KeySchema: [
         {
-          AttributeName: 'UserId',
+          AttributeName: 'UserEmail',
           KeyType: 'HASH'
         }
       ],
@@ -39,8 +39,8 @@ var params = {
       AttributeType: 'S', // (S | N | B) for string, number, binary
     },
     {
-      AttributeName: 'UserId',
-      AttributeType: 'N', // (S | N | B) for string, number, binary
+      AttributeName: 'UserEmail',
+      AttributeType: 'S', // (S | N | B) for string, number, binary
     }
   ],
   ProvisionedThroughput: { // required provisioned throughput for the table

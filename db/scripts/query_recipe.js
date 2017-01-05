@@ -39,10 +39,10 @@ docClient.query(recipesByCookbook, function(err, data) {
 /* Get all recipes by user */
 var recipesByUser = {
   TableName: "Recipe",
-  IndexName: "UserIndex",
-  KeyConditionExpression: "UserId = :id",
+  IndexName: "UserEmailIndex",
+  KeyConditionExpression: "UserEmail = :email",
   ExpressionAttributeValues: {
-    ":id": 1
+    ":email": "nancy@mail.com"
   },
 }
 
