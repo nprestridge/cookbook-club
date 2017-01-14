@@ -49,7 +49,7 @@ var books = {
             Title: 'Skinnytaste',
             Author: 'Gina Homolka',
             MeetingDate: '2016-09-07',
-            Url: 'http://www.skinnytaste.com/'
+            Blog: 'http://www.skinnytaste.com/'
           }
         }
       },
@@ -68,7 +68,7 @@ var books = {
             Title: 'Smitten Kitchen',
             Author: 'Deb Perelman',
             MeetingDate: '2017-28-01',
-            Url: 'https://smittenkitchen.com'
+            Blog: 'https://smittenkitchen.com'
           }
         }
       },

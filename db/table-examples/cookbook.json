@@ -27,7 +27,7 @@
         "Item": {
           "Author": {"S": "Gina Homolka"},
           "Title": {"S": "Skinnytaste"},
-          "Url": {"S": "http://www.skinnytaste.com"},
+          "Blog": {"S": "http://www.skinnytaste.com"},
           "MeetingDate": {"S": "2016-07-09"}
         }
       }
@@ -46,7 +46,7 @@
         "Item": {
           "Author": {"S": "Deb Perelman"},
           "Title": {"S": "Smitten Kitchen"},
-          "Url": {"S": "https://smittenkitchen.com"},
+          "Blog": {"S": "https://smittenkitchen.com"},
           "MeetingDate": {"S": "2017-01-28"}
         }
       }
