@@ -35,8 +35,8 @@ exports.handler = (event, context, callback) => {
         author: element.Author
       };
 
-      if (element.Url) {
-        formattedResult.link = element.Url;
+      if (element.Blog) {
+        formattedResult.blog = element.Blog;
       }
 
       if (element.MeetingDate) {
@@ -76,7 +76,7 @@ exports.handler = (event, context, callback) => {
         }
       });
     }
-    
+
     callback(null, response);
   });
 };
