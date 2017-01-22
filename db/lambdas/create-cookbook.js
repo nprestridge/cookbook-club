@@ -16,7 +16,7 @@ const dynamo = new doc.DynamoDB();
 exports.handler = (event, context, callback) => {
   const title = event.title;
   const author = event.author;
-  const meetingDate = event.meetingDate
+  const meetingDate = event.meetingDate;
   const blog = event.blog;
 
   // Check required fields are entered
