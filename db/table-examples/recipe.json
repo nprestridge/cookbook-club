@@ -60,7 +60,7 @@
         "Item": {
           "Cookbook": {"S": "Everyday Italian"},
           "Name": {"S": "Lemon Ricotta Cookies"},
-          "Url": {"S": "http://www.foodnetwork.com/recipes/giada-de-laurentiis/lemon-ricotta-cookies-with-lemon-glaze-recipe.html"},
+          "Link": {"S": "http://www.foodnetwork.com/recipes/giada-de-laurentiis/lemon-ricotta-cookies-with-lemon-glaze-recipe.html"},
           "UserEmail": {"S": "nadine@mail.com"}
         }
       }
@@ -180,7 +180,7 @@
         "Item": {
           "Cookbook": {"S": "Skinnytaste"},
           "Name": {"S": "Shrimp Summer Rolls with Peanut Hoisin Dipping Sauce"},
-          "Url": {"S": "http://www.skinnytaste.com/shrimp-summer-rolls-with-peanut-hoisin/"},
+          "Link": {"S": "http://www.skinnytaste.com/shrimp-summer-rolls-with-peanut-hoisin/"},
           "UserEmail": {"S": "kristine@mail.com"}
         }
       }
@@ -190,7 +190,7 @@
         "Item": {
           "Cookbook": {"S": "Skinnytaste"},
           "Name": {"S": "Balsamic Chicken with Roasted Vegetables"},
-          "Url": {"S": "http://www.skinnytaste.com/balsamic-chicken-with-roasted/"},
+          "Link": {"S": "http://www.skinnytaste.com/balsamic-chicken-with-roasted/"},
           "UserEmail": {"S": "lisa@mail.com"}
         }
       }
@@ -200,7 +200,7 @@
         "Item": {
           "Cookbook": {"S": "Skinnytaste"},
           "Name": {"S": "Mexican Cauliflower Rice"},
-          "Url": {"S": "http://www.skinnytaste.com/mexican-cauliflower-rice/"},
+          "Link": {"S": "http://www.skinnytaste.com/mexican-cauliflower-rice/"},
           "UserEmail": {"S": "tammy@mail.com"}
         }
       }
@@ -210,7 +210,7 @@
         "Item": {
           "Cookbook": {"S": "Skinnytaste"},
           "Name": {"S": "Mediterranean Bean Salad"},
-          "Url": {"S": "http://www.skinnytaste.com/mediterranean-bean-salad/"},
+          "Link": {"S": "http://www.skinnytaste.com/mediterranean-bean-salad/"},
           "UserEmail": {"S": "nadine@mail.com"}
         }
       }
@@ -220,7 +220,7 @@
         "Item": {
           "Cookbook": {"S": "Skinnytaste"},
           "Name": {"S": "Indian Spiced Cauliflower and Potato"},
-          "Url": {"S": "http://www.skinnytaste.com/indian-spiced-cauliflower-and-potato/"},
+          "Link": {"S": "http://www.skinnytaste.com/indian-spiced-cauliflower-and-potato/"},
           "UserEmail": {"S": "nancy@mail.com"}
         }
       }
@@ -230,7 +230,7 @@
         "Item": {
           "Cookbook": {"S": "Skinnytaste"},
           "Name": {"S": "Pina Colada Sorbet"},
-          "Url": {"S": "http://www.skinnytaste.com/pina-colada-sorbet/"},
+          "Link": {"S": "http://www.skinnytaste.com/pina-colada-sorbet/"},
           "UserEmail": {"S": "kathy@mail.com"}
         }
       }
@@ -240,7 +240,7 @@
         "Item": {
           "Cookbook": {"S": "Skinnytaste"},
           "Name": {"S": "Carrot Cake Cupcakes with Cream Cheese Frosting"},
-          "Url": {"S": "http://www.skinnytaste.com/super-moist-carrot-cake-with-cream/"},
+          "Link": {"S": "http://www.skinnytaste.com/super-moist-carrot-cake-with-cream/"},
           "UserEmail": {"S": "nancy@mail.com"}
         }
       }
