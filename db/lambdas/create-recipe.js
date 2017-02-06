@@ -4,6 +4,18 @@ const doc = require('dynamodb-doc');
 
 const dynamo = new doc.DynamoDB();
 
+function createCookbookRecipeIndex(cookbook, recipe) {
+  let key = null;
+
+  if (cookbook && recipe) {
+    // create string with spaces removed in the format of: Cookbook - Recipe
+    // Example: EverydayItalian-ClassicItalianLasagna
+    key = cookbook.replace(/\s+/g, '') + '-' + recipe.replace(/\s+/g, '');
+  }
+
+  return key;
+}
+
 /**
 * Create a recipe
 *
@@ -53,6 +65,9 @@ exports.handler = (event, context, callback) => {
   if (page) {
     item.Page = page;
   }
+
+  // Create CookbookRecipe index
+  item.CookbookRecipe = createCookbookRecipeIndex(cookbook, name);
 
   const payload = {
     TableName: 'Recipe',

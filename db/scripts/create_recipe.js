@@ -27,6 +27,22 @@ var params = {
         ReadCapacityUnits: 1,
         WriteCapacityUnits: 1,
       }
+    },
+    {
+      IndexName: 'CookbookRecipeIndex',
+      KeySchema: [
+        {
+          AttributeName: 'CookbookRecipe',
+          KeyType: 'HASH'
+        }
+      ],
+      Projection: {
+        ProjectionType: 'ALL'
+      },
+      ProvisionedThroughput: {
+        ReadCapacityUnits: 1,
+        WriteCapacityUnits: 1,
+      }
     }
   ],
   AttributeDefinitions: [ // The names and types of all primary and index key attributes only
