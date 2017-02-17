@@ -1,0 +1,55 @@
+{
+  "Cookbook": [
+    {
+      "PutRequest": {
+        "Item": {
+          "Author": {"S": "Giada De Laurentiis"},
+          "Title": {"S": "Everyday Italian"},
+          "MeetingDate": {"S": "2016-03-26"},
+          "Images": {"SS": [
+            "all-dishes.jpg",
+            "cookbook.jpg"
+          ]}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Author": {"S": "Ina Garten"},
+          "Title": {"S": "How Easy is That?"},
+          "MeetingDate": {"S": "2016-05-22"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Author": {"S": "Gina Homolka"},
+          "Title": {"S": "Skinnytaste"},
+          "Blog": {"S": "http://www.skinnytaste.com"},
+          "MeetingDate": {"S": "2016-07-09"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Author": {"S": "Chrissy Teigen"},
+          "Title": {"S": "Cravings"},
+          "MeetingDate": {"S": "2016-09-24"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "Author": {"S": "Deb Perelman"},
+          "Title": {"S": "Smitten Kitchen"},
+          "Blog": {"S": "https://smittenkitchen.com"},
+          "MeetingDate": {"S": "2017-01-28"}
+        }
+      }
+    }
+  ]
+}
