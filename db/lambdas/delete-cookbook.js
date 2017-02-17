@@ -4,6 +4,17 @@ const doc = require('dynamodb-doc');
 
 const dynamo = new doc.DynamoDB();
 
+function queryDynamoPromise(params) {
+  return new Promise((resolve, reject) => {
+    dynamo.query(params, (err, data) => {
+      if (err) {
+        return reject(err);
+      }
+      return resolve(data);
+    });
+  });
+}
+
 /**
 * Delete a cookbook
 *
@@ -12,8 +23,8 @@ const dynamo = new doc.DynamoDB();
 *   - author
 */
 exports.handler = (event, context, callback) => {
-  const title = event.title;
-  const author = event.author;
+  const title = decodeURI(event.params.path.title);
+  const author = decodeURI(event.params.path.author);
 
   // Check required fields are entered
   let validationError = '';
@@ -29,14 +40,34 @@ exports.handler = (event, context, callback) => {
     callback (validationError);
   }
 
-  // Delete item
-  const payload = {
-    TableName: 'Cookbook',
-    Key: {
-      Title: title,
-      Author: author
+  // Only delete cookbook if there are no recipes associated
+  const recipes = {
+    TableName: 'Recipe',
+    KeyConditionExpression: 'Cookbook = :cookbook',
+    ExpressionAttributeValues: {
+      ':cookbook': title,
     }
   };
 
-  dynamo.deleteItem(payload, callback);
+  queryDynamoPromise(recipes).then(function(data) {
+    if (data && data.Items && data.Items.length > 0) {
+      // Do not delete cookbook
+      callback ('Cookbook has recipes which cannot be deleted.');
+    }
+    else {
+      // Delete item
+      const payload = {
+        TableName: 'Cookbook',
+        Key: {
+          Title: title,
+          Author: author
+        }
+      };
+
+      dynamo.deleteItem(payload, callback);
+    }
+  }).catch(function(err) {
+    callback(err);
+  });
+
 }

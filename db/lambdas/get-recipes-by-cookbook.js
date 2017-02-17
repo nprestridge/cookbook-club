@@ -42,13 +42,20 @@ function getUserMapPromise() {
 * Get all recipes by cookbook name in DynamoDB
 *
 * Provide an event that contains the following keys:
-*   - cookbook
+*   - author:  cookbook author
+*   - title:  cookbook title
 */
 exports.handler = (event, context, callback) => {
-  const cookbook = event.cookbook;
+  const author = decodeURI(event.params.path.author);
+  const cookbook = decodeURI(event.params.path.title);
 
   // Check required fields are entered
   let validationError = '';
+
+  if (!author) {
+    validationError += 'Select an Author \n';
+  }
+
   if (!cookbook) {
     validationError += 'Select a Cookbook \n';
   }
@@ -56,6 +63,8 @@ exports.handler = (event, context, callback) => {
   if (validationError) {
     callback (validationError);
   }
+
+  // TODO:  Get cookbook details
 
   const payload = {
     TableName: 'Recipe',

@@ -14,10 +14,10 @@ const dynamo = new doc.DynamoDB();
 *   - (optionel) blog
 */
 exports.handler = (event, context, callback) => {
-  const title = event.title;
-  const author = event.author;
-  const meetingDate = event.meetingDate;
-  const blog = event.blog;
+  const title = decodeURI(event.params.path.title);
+  const author = decodeURI(event.params.path.author);
+  const meetingDate = event.params.path.meetingDate
+  const blog = event.params.path.blog;
 
   // Check required fields are entered
   let validationError = '';

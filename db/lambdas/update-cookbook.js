@@ -11,14 +11,13 @@ const dynamo = new doc.DynamoDB();
 *   - title: Cookbook name or Blog site
 *   - author
 *   - (optional) meetingDate in ISO format (YYYY-MM-DD)
-*   - (optional) url
+*   - (optional) blog
 */
 exports.handler = (event, context, callback) => {
-  // TODO - Allow image upload
-  const title = event.title;
-  const author = event.author;
-  const meetingDate = event.meetingDate
-  const url = event.blog;
+  const title = decodeURI(event.params.path.title);
+  const author = decodeURI(event.params.path.author);
+  const meetingDate = event.params.path.meetingDate
+  const blog = event.params.path.blog;
 
   // Check required fields are entered
   let validationError = '';
@@ -45,7 +44,7 @@ exports.handler = (event, context, callback) => {
     UpdateExpression: "set MeetingDate = :date, Blog = :blog",
     ExpressionAttributeValues: {
       ":date": meetingDate,
-      ":blog": url
+      ":blog": blog
     },
   };
 

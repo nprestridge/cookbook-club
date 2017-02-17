@@ -11,7 +11,7 @@ const dynamo = new doc.DynamoDB();
 *   - author
 */
 exports.handler = (event, context, callback) => {
-  const author = event.author;
+  const author = decodeURI(event.params.path.author);
 
   // Check required fields are entered
   let validationError = '';
