@@ -1,5 +1,4 @@
 const API_KEY = process.env.REACT_APP_API_KEY;
-
 /* eslint-disable no-undef */
 // function search(query, cb) {
 //   return fetch(`api/food?q=${query}`, {
@@ -10,7 +9,7 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 // }
 
 function getCookbooks(cb) {
-  return fetch('cookbooks', {
+  return fetch(`cookbooks`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -37,5 +36,5 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Client = { getCookbooks };
-export default Client;
+const Api = { getCookbooks };
+export default Api;

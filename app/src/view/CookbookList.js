@@ -1,5 +1,5 @@
 import React from 'react';
-import Client from './Client';
+import Api from './../controller/Api.js';
 
 class CookbookList extends React.Component {
   state = {
@@ -7,7 +7,7 @@ class CookbookList extends React.Component {
   };
 
   componentDidMount() {
-    Client.getCookbooks((books) => {
+    Api.getCookbooks((books) => {
      this.setState({
        cookbooks: books,
      });

@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
-import './App.css';
 
-import CookbookList from './CookbookList';
+export default class App extends Component {
 
-class App extends Component {
+  // used with the force redirect
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      children: nextProps.children
+    });
+  }
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <h2>Cookbook Club Meeting Suggestions</h2>
-        </div>
-
-        <CookbookList
-        />
+      // header here
+      <div>
+        {this.props.children}
       </div>
+      // nav here
     );
   }
-  
 }
-
-export default App;
