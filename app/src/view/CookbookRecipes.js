@@ -8,16 +8,20 @@ class CookbookRecipes extends React.Component {
   };
 
   componentDidMount() {
-    const params = this.props.params;
-    Api.getCookbookRecipes(encodeURIComponent(params.author), encodeURIComponent(params.book), (recipes) => {
+    const book = this.props.params.book;
+    const author = this.props.params.author;
+
+    Api.getCookbookRecipes(encodeURIComponent(author), encodeURIComponent(book), (recipes) => {
      this.setState({
+       book: book,
+       author: author,
        recipes: recipes,
      });
     });
   }
 
   render() {
-    const { recipes } = this.state;
+    const { book, author, recipes } = this.state;
 
     let recipeRows = [];
 
@@ -37,24 +41,29 @@ class CookbookRecipes extends React.Component {
     }
 
     return (
-      <div>
-        <table>
-         <thead>
-           <tr>
-             <th>Recipe</th>
-             <th>Page</th>
-             <th>Brought by</th>
-           </tr>
-         </thead>
-         <tbody>
-           {recipeRows.length > 0 ?
-             recipeRows
-             : <tr><td colSpan='3'>Add recipes!</td></tr>
-           }
-         </tbody>
-       </table>
-       <p><Link to={`/cookbooks`}>Cookbook Club Meetings</Link></p>
-     </div>
+      <div className="App">
+        <div className="App-header">
+          <h2><em>{book}</em> by {author}</h2>
+        </div>
+        <div>
+          <table>
+           <thead>
+             <tr>
+               <th>Recipe</th>
+               <th>Page</th>
+               <th>Brought by</th>
+             </tr>
+           </thead>
+           <tbody>
+             {recipeRows.length > 0 ?
+               recipeRows
+               : <tr><td colSpan='3'>Add recipes!</td></tr>
+             }
+           </tbody>
+         </table>
+          <p><Link to={`/`}>Cookbook Club Meetings</Link></p>
+        </div>
+      </div>
     );
   }
 }
