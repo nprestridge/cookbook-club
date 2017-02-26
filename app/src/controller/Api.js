@@ -1,15 +1,20 @@
-const API_KEY = process.env.REACT_APP_API_KEY;
-/* eslint-disable no-undef */
-// function search(query, cb) {
-//   return fetch(`api/food?q=${query}`, {
-//     accept: 'application/json',
-//   }).then(checkStatus)
-//     .then(parseJSON)
-//     .then(cb);
-// }
+const PROXY = "API HERE";
+const API_KEY = "API KEY HERE";
 
 function getCookbooks(cb) {
-  return fetch(`cookbooks`, {
+  return fetch(`${PROXY}cookbooks`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': API_KEY
+    }
+  }).then(checkStatus)
+    .then(parseJSON)
+    .then(cb);
+}
+
+function getCookbookRecipes(author, book, cb) {
+  return fetch(`${PROXY}recipes/${author}/${book}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -36,5 +41,5 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Api = { getCookbooks };
+const Api = { getCookbooks, getCookbookRecipes };
 export default Api;

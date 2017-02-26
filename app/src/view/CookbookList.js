@@ -1,5 +1,6 @@
 import React from 'react';
 import Api from './../controller/Api.js';
+import { Link } from 'react-router';
 
 class CookbookList extends React.Component {
   state = {
@@ -24,7 +25,7 @@ class CookbookList extends React.Component {
         <tr
           key={idx}
         >
-          <td>{book.title}</td>
+          <td><Link to={'/recipes/'+encodeURIComponent(book.author)+'/'+encodeURIComponent(book.title)}>{book.title}</Link></td>
           <td>{book.author}</td>
           <td><a href="{book.blog}" target="_blank">{book.blog}</a></td>
           <td>{book.displayDate}</td>
