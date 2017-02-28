@@ -13,7 +13,6 @@ class Index extends Component {
         </div>
         <div>
           <CookbookList />
-          <p><Link to={`/cookbooks`}>Cookbook Club Meetings</Link></p>
         </div>
       </div>
     );

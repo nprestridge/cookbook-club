@@ -2,6 +2,8 @@ import React from 'react';
 import Api from './../controller/Api.js';
 import { Link } from 'react-router';
 
+import AddCookbook from './AddCookbook';
+
 class CookbookList extends React.Component {
   state = {
     cookbooks: []
@@ -27,7 +29,7 @@ class CookbookList extends React.Component {
         >
           <td><Link to={'/recipes/'+encodeURIComponent(book.author)+'/'+encodeURIComponent(book.title)}>{book.title}</Link></td>
           <td>{book.author}</td>
-          <td><a href="{book.blog}" target="_blank">{book.blog}</a></td>
+          <td><a href={book.blog} target="_blank">{book.blog}</a></td>
           <td>{book.displayDate}</td>
           <td><a href=""
             onClick={() => this.props.onBookClick(book)}>Edit</a></td>
@@ -36,20 +38,23 @@ class CookbookList extends React.Component {
     }
 
     return (
-      <table>
-       <thead>
-         <tr>
-           <th>Title</th>
-           <th>Author</th>
-           <th>Blog</th>
-           <th>Meeting Date</th>
-           <th></th>
-         </tr>
-       </thead>
-       <tbody>
-         {cookbookRows}
-       </tbody>
-     </table>
+      <div>
+        <table>
+         <thead>
+           <tr>
+             <th>Title</th>
+             <th>Author</th>
+             <th>Blog</th>
+             <th>Meeting Date</th>
+             <th></th>
+           </tr>
+         </thead>
+         <tbody>
+           {cookbookRows}
+         </tbody>
+       </table>
+       <AddCookbook />
+     </div>
     );
   }
 }

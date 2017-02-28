@@ -13,6 +13,36 @@ function getCookbooks(cb) {
     .then(cb);
 }
 
+function updateCookbook(title, author, blog, date, cb) {
+  let body = {
+    params: {
+      path: {
+        author: author,
+        title: title
+      }
+    }
+  }
+
+  if (blog) {
+    body.params.path.blog = blog;
+  }
+
+  if (date) {
+    body.params.path.meetingDate = date;
+  }
+
+  return fetch(`${PROXY}cookbooks`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': API_KEY
+    },
+    body: JSON.stringify(body)
+  }).then(checkStatus)
+    .then(parseJSON)
+    .then(cb);
+}
+
 function getCookbookRecipes(author, book, cb) {
   return fetch(`${PROXY}recipes/${author}/${book}`, {
     method: 'GET',
@@ -41,5 +71,5 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Api = { getCookbooks, getCookbookRecipes };
+const Api = { getCookbooks, updateCookbook, getCookbookRecipes };
 export default Api;
