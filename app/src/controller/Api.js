@@ -43,6 +43,28 @@ function updateCookbook(title, author, blog, date, cb) {
     .then(cb);
 }
 
+function deleteCookbook(title, author, cb) {
+  let body = {
+    params: {
+      path: {
+        author: author,
+        title: title
+      }
+    }
+  }
+
+  return fetch(`${PROXY}cookbooks`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': API_KEY
+    },
+    body: JSON.stringify(body)
+  }).then(checkStatus)
+    .then(parseJSON)
+    .then(cb);
+}
+
 function getCookbookRecipes(author, book, cb) {
   return fetch(`${PROXY}recipes/${author}/${book}`, {
     method: 'GET',
@@ -71,5 +93,5 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Api = { getCookbooks, updateCookbook, getCookbookRecipes };
+const Api = { getCookbooks, updateCookbook, deleteCookbook, getCookbookRecipes };
 export default Api;

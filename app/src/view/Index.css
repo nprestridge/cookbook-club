@@ -43,6 +43,11 @@ td {
   text-align: left;
 }
 
-.cookbookForm {
+.cookbook-form {
   padding: 20px;
 }
+
+.button-section {
+  padding-top: 5px;
+}
+

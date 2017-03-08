@@ -1,20 +1,43 @@
 import React from 'react';
 import Api from './../controller/Api.js';
 import { Link } from 'react-router';
+import { Button, Modal } from 'react-bootstrap';
 
 import AddCookbook from './AddCookbook';
 
 class CookbookList extends React.Component {
   state = {
-    cookbooks: []
+    cookbooks: [],
+    showModal: false
   };
 
   componentDidMount() {
+    this.refreshCookbookList();
+  }
+
+  refreshCookbookList() {
     Api.getCookbooks((books) => {
      this.setState({
        cookbooks: books,
      });
     });
+  }
+
+  deleteCookbook(book) {
+    // TODO - Add delete confirmation
+    console.log("DELETE: ", book);
+    Api.deleteCookbook(book.title, book.author);
+    this.refreshCookbookList();
+  }
+
+  close() {
+    this.setState({ showModal: false });
+    this.refreshCookbookList();
+  }
+
+  open() {
+    console.log(this);
+    this.setState({ showModal: true });
   }
 
   render() {
@@ -31,14 +54,36 @@ class CookbookList extends React.Component {
           <td>{book.author}</td>
           <td><a href={book.blog} target="_blank">{book.blog}</a></td>
           <td>{book.displayDate}</td>
-          <td><a href=""
-            onClick={() => this.props.onBookClick(book)}>Edit</a></td>
+          <td>
+            <Button
+              bsStyle="info"
+              onClick={this.open.bind(this)}
+            >
+              Edit
+            </Button>
+          </td>
+          <td>{!book.displayDate ?
+              <Button
+                bsStyle="danger"
+                onClick={() => this.deleteCookbook(book)}
+              >
+                X
+              </Button> : ""}
+          </td>
         </tr>
       ));
     }
 
     return (
       <div>
+        <div className="button-section">
+          <Button
+            bsStyle="primary"
+            onClick={this.open.bind(this)}
+          >
+            Add Cookbook
+          </Button>
+        </div>
         <table>
          <thead>
            <tr>
@@ -47,13 +92,25 @@ class CookbookList extends React.Component {
              <th>Blog</th>
              <th>Meeting Date</th>
              <th></th>
+             <th></th>
            </tr>
          </thead>
          <tbody>
            {cookbookRows}
          </tbody>
        </table>
-       <AddCookbook />
+
+       <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
+         <Modal.Header closeButton>
+           <Modal.Title>Add Cookbook</Modal.Title>
+         </Modal.Header>
+         <Modal.Body>
+           <AddCookbook />
+         </Modal.Body>
+         <Modal.Footer>
+           <Button onClick={this.close.bind(this)}>Close</Button>
+         </Modal.Footer>
+       </Modal>
      </div>
     );
   }

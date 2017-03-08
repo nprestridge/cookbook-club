@@ -56,7 +56,7 @@ class AddCookbook extends React.Component {
   render() {
     const { errors } = this.state;
     return (
-      <form id="add-cookbook" className="cookbookForm" onSubmit={this.handleSubmit}>
+      <form id="add-cookbook" className="cookbook-form" onSubmit={this.handleSubmit}>
         {this.renderError()}
         <div>
           Cookbook Title: <input name="title" type="text" />

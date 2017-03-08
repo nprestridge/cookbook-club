@@ -9,7 +9,7 @@ class Index extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Welcome to Cookbook Club!</h2>
+          Welcome to Cookbook Club!
         </div>
         <div>
           <CookbookList />

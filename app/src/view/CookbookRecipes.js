@@ -43,7 +43,7 @@ class CookbookRecipes extends React.Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2><em>{book}</em> by {author}</h2>
+          <em>{book}</em> by {author}
         </div>
         <div>
           <table>
