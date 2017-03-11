@@ -23,6 +23,13 @@ class CookbookList extends React.Component {
     });
   }
 
+  editCookbook(book) {
+    this.setState({
+      showModal: true,
+      currentBook: book
+    });
+  }
+
   deleteCookbook(book) {
     // TODO - Add delete confirmation
     console.log("DELETE: ", book);
@@ -36,7 +43,6 @@ class CookbookList extends React.Component {
   }
 
   open() {
-    console.log(this);
     this.setState({ showModal: true });
   }
 
@@ -57,7 +63,7 @@ class CookbookList extends React.Component {
           <td>
             <Button
               bsStyle="info"
-              onClick={this.open.bind(this)}
+              onClick={() => this.editCookbook(book)}
             >
               Edit
             </Button>
@@ -105,7 +111,7 @@ class CookbookList extends React.Component {
            <Modal.Title>Add Cookbook</Modal.Title>
          </Modal.Header>
          <Modal.Body>
-           <AddCookbook />
+           <AddCookbook book={this.state.currentBook} />
          </Modal.Body>
          <Modal.Footer>
            <Button onClick={this.close.bind(this)}>Close</Button>
