@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
-import logo from './logo.svg';
 import CookbookList from './CookbookList';
 import './Index.css';
 

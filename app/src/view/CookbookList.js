@@ -6,10 +6,17 @@ import { Button } from 'react-bootstrap';
 import AddCookbook from './AddCookbook';
 
 class CookbookList extends React.Component {
-  state = {
-    cookbooks: [],
-    showModal: false
-  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      cookbooks: [],
+      showModal: false,
+    };
+
+    this.refreshCookbookList = this.refreshCookbookList.bind(this);
+  }
 
   componentDidMount() {
     this.refreshCookbookList();
@@ -19,13 +26,15 @@ class CookbookList extends React.Component {
     Api.getCookbooks((books) => {
      this.setState({
        cookbooks: books,
+       showModal: false
      });
     });
   }
 
   addCookbook() {
     this.setState({
-      showModal: true
+      showModal: true,
+      currentBook: null
     });
   }
 
@@ -78,7 +87,7 @@ class CookbookList extends React.Component {
     }
 
     return (
-      <div>
+      <div id="cookbook-list">
         <div className="button-section">
           <Button
             bsStyle="primary"
@@ -104,7 +113,8 @@ class CookbookList extends React.Component {
          </tbody>
        </table>
 
-       <AddCookbook book={this.state.currentBook} showModal={this.state.showModal} />
+       <AddCookbook book={this.state.currentBook} showModal={this.state.showModal}
+         callback={this.refreshCookbookList} />
      </div>
     );
   }

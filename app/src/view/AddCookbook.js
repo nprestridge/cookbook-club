@@ -20,24 +20,17 @@ class AddCookbook extends React.Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.postUpdate = this.postUpdate.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.book) {
-      const book = this.props.book;
-      this.setState({
-        title: book.title,
-        author: book.author,
-        date: book.isoDate,
-        blog: book.blog,
-        action: "Update"
-      });
+    if (this.props.callback) {
+      this.parentCallback = this.props.callback.bind(this);
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.state.showModal !== nextProps.showModal) {
-      // console.log("PROPS ", prevProps);
       this.setState({
         showModal: nextProps.showModal
       });
@@ -52,14 +45,16 @@ class AddCookbook extends React.Component {
         blog: book.blog,
         action: "Update"
       });
+    } else {
+      this.setState({
+        title: "",
+        author: "",
+        date: "",
+        blog: "",
+        action: "Add"
+      });
     }
-
   }
-
-  closeModal() {
-    this.setState({ showModal: false });
-  }
-
   handleInputChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -89,6 +84,7 @@ class AddCookbook extends React.Component {
       validationErrors.push("Author is required");
     }
 
+    // Return any validation errors
     if (validationErrors.length > 0) {
       this.setState({
         error: validationErrors
@@ -97,22 +93,19 @@ class AddCookbook extends React.Component {
     }
 
     // Update cookbook
-    Api.updateCookbook(title, author, blog, date);
+    Api.updateCookbook(title, author, blog, date, this.postUpdate);
+  }
 
-    // TODO - Close modal, Refresh cookbook list
+  postUpdate() {
+    this.parentCallback();
+    this.closeModal();
+  }
 
-    // TODO - Reset form, error state
+  closeModal() {
     this.setState({
-      title: "",
-      author: "",
-      date: "",
-      blog: "",
-      error: "",
+      error: null,
       showModal: false
     });
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   renderError() {
