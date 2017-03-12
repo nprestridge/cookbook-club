@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button, Modal } from 'react-bootstrap';
+
 import Api from './../controller/Api.js';
 
 class AddCookbook extends React.Component {
@@ -12,7 +14,8 @@ class AddCookbook extends React.Component {
       author: "",
       date: "",
       blog: "",
-      action: "Add"
+      action: "Add",
+      showModal: false
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -30,6 +33,31 @@ class AddCookbook extends React.Component {
         action: "Update"
       });
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.showModal !== nextProps.showModal) {
+      // console.log("PROPS ", prevProps);
+      this.setState({
+        showModal: nextProps.showModal
+      });
+    }
+
+    if (nextProps.book) {
+      const book = nextProps.book;
+      this.setState({
+        title: book.title,
+        author: book.author,
+        date: book.isoDate,
+        blog: book.blog,
+        action: "Update"
+      });
+    }
+
+  }
+
+  closeModal() {
+    this.setState({ showModal: false });
   }
 
   handleInputChange(event) {
@@ -79,7 +107,8 @@ class AddCookbook extends React.Component {
       author: "",
       date: "",
       blog: "",
-      error: ""
+      error: "",
+      showModal: false
     });
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -98,22 +127,37 @@ class AddCookbook extends React.Component {
 
   render() {
     return (
-      <form id="add-cookbook" className="cookbook-form" onSubmit={this.handleSubmit}>
-        {this.renderError()}
-        <div>
-          Cookbook Title: <input name="title" type="text" value={this.state.title} onChange={this.handleInputChange} />
-        </div>
-        <div>
-          Author: <input name="author" type="text" value={this.state.author} onChange={this.handleInputChange}  />
-        </div>
-        <div>
-          Blog: <input name="blog" type="text" value={this.state.blog} onChange={this.handleInputChange}  />
-        </div>
-        <div>
-          Meeting Date: <input name="date" type="text" value={this.state.date} onChange={this.handleInputChange}  />
-        </div>
-        <button type="submit">{this.state.action} Cookbook</button>
-      </form>
+      <Modal show={this.state.showModal} onHide={this.closeModal.bind(this)}>
+        <Modal.Header closeButton>
+          <Modal.Title>{this.state.action} Cookbook</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form id="add-cookbook" className="cookbook-form" onSubmit={this.handleSubmit}>
+            {this.renderError()}
+            <div>
+              Cookbook Title: {this.state.action === "Add" ?
+                  <input name="title" type="text" value={this.state.title} onChange={this.handleInputChange} />
+                  : <span>{this.state.title}</span>
+                }
+            </div>
+            <div>
+              Author: {this.state.action === "Add" ?
+                  <input name="author" type="text" value={this.state.author} onChange={this.handleInputChange}  />
+                  : <span>{this.state.author}</span>
+                }
+            </div>
+            <div>
+              Blog: <input name="blog" type="text" value={this.state.blog} onChange={this.handleInputChange}  />
+            </div>
+            <div>
+              Meeting Date: <input name="date" type="text" value={this.state.date} onChange={this.handleInputChange}  />
+            </div>
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={this.handleSubmit}>{this.state.action} Cookbook</Button>
+        </Modal.Footer>
+      </Modal>
     )
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import Api from './../controller/Api.js';
 import { Link } from 'react-router';
-import { Button, Modal } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 import AddCookbook from './AddCookbook';
 
@@ -23,6 +23,12 @@ class CookbookList extends React.Component {
     });
   }
 
+  addCookbook() {
+    this.setState({
+      showModal: true
+    });
+  }
+
   editCookbook(book) {
     this.setState({
       showModal: true,
@@ -35,15 +41,6 @@ class CookbookList extends React.Component {
     console.log("DELETE: ", book);
     Api.deleteCookbook(book.title, book.author);
     this.refreshCookbookList();
-  }
-
-  close() {
-    this.setState({ showModal: false });
-    this.refreshCookbookList();
-  }
-
-  open() {
-    this.setState({ showModal: true });
   }
 
   render() {
@@ -85,10 +82,11 @@ class CookbookList extends React.Component {
         <div className="button-section">
           <Button
             bsStyle="primary"
-            onClick={this.open.bind(this)}
+            onClick={() => this.addCookbook()}
           >
             Add Cookbook
           </Button>
+
         </div>
         <table>
          <thead>
@@ -106,17 +104,7 @@ class CookbookList extends React.Component {
          </tbody>
        </table>
 
-       <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
-         <Modal.Header closeButton>
-           <Modal.Title>Add Cookbook</Modal.Title>
-         </Modal.Header>
-         <Modal.Body>
-           <AddCookbook book={this.state.currentBook} />
-         </Modal.Body>
-         <Modal.Footer>
-           <Button onClick={this.close.bind(this)}>Close</Button>
-         </Modal.Footer>
-       </Modal>
+       <AddCookbook book={this.state.currentBook} showModal={this.state.showModal} />
      </div>
     );
   }
