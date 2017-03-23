@@ -1,0 +1,10 @@
+
+machine:
+  node:
+    version: 4.2.1
+
+deployment:
+  production:
+    branch: deploy
+    commands:
+      - npm run build
