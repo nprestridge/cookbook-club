@@ -1,5 +1,8 @@
-const PROXY = "API HERE";
-const API_KEY = "API KEY HERE";
+import Config from './../Config.js';
+
+const config = Config.load();
+const PROXY = config.api.endpoint;
+const API_KEY = config.api.key;
 
 function getCookbooks(cb) {
   return fetch(`${PROXY}cookbooks`, {
