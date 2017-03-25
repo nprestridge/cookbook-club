@@ -11,6 +11,5 @@ deployment:
   production:
     branch: deploy
     commands:
-      - cd app
       - npm run build
       - aws s3 sync build/ s3://cookbook-club-site/

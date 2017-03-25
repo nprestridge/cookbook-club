@@ -40,3 +40,7 @@ jspm_packages
 lambdas/*/src/config/local.js
 lambdas/*/dist*
 lambdas/*/deploy*
+
+# production
+/build
+/src/config/*
