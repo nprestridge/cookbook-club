@@ -11,5 +11,6 @@ deployment:
   production:
     branch: deploy
     commands:
+      - sed -e 's/API_ENDPOINT/${API_ENDPOINT}/g' -e 's/API_KEY/${API_KEY}/g' src/config/production.json.ci > src/config/production.json
       - npm run build
       - aws s3 sync build/ s3://cookbook-club-site/
