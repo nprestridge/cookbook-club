@@ -37,10 +37,11 @@ jspm_packages
 .node_repl_history
 
 # Local config
+.env
+src/config/local.json
 lambdas/*/src/config/local.js
 lambdas/*/dist*
 lambdas/*/deploy*
 
 # production
 /build
-/src/config/*
