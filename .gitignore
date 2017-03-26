@@ -41,9 +41,5 @@ jspm_packages
 src/config/local.json
 src/config/production.json
 
-lambdas/*/src/config/local.js
-lambdas/*/dist*
-lambdas/*/deploy*
-
 # production
 /build
