@@ -1,9 +1,9 @@
-import React from 'react';
-import Api from './../controller/Api.js';
 import { Link } from 'react-router';
 import { Button } from 'react-bootstrap';
+import React from 'react';
 
 import AddCookbook from './AddCookbook';
+import Api from './../controller/Api';
 
 class CookbookList extends React.Component {
 
@@ -24,30 +24,30 @@ class CookbookList extends React.Component {
 
   refreshCookbookList() {
     Api.getCookbooks((books) => {
-     this.setState({
-       cookbooks: books,
-       showModal: false
-     });
+      this.setState({
+        cookbooks: books,
+        showModal: false,
+      });
     });
   }
 
   addCookbook() {
     this.setState({
       showModal: true,
-      currentBook: null
+      currentBook: null,
     });
   }
 
   editCookbook(book) {
     this.setState({
       showModal: true,
-      currentBook: book
+      currentBook: book,
     });
   }
 
   deleteCookbook(book) {
     // TODO - Add delete confirmation
-    console.log("DELETE: ", book);
+
     Api.deleteCookbook(book.title, book.author);
     this.refreshCookbookList();
   }

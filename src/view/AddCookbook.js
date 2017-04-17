@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 
-import Api from './../controller/Api.js';
+import Api from './../controller/Api';
 
 class AddCookbook extends React.Component {
 
@@ -10,12 +10,12 @@ class AddCookbook extends React.Component {
 
     this.state = {
       error: null,
-      title: "",
-      author: "",
-      date: "",
-      blog: "",
-      action: "Add",
-      showModal: false
+      title: '',
+      author: '',
+      date: '',
+      blog: '',
+      action: 'Add',
+      showModal: false,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -32,7 +32,7 @@ class AddCookbook extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.state.showModal !== nextProps.showModal) {
       this.setState({
-        showModal: nextProps.showModal
+        showModal: nextProps.showModal,
       });
     }
 
@@ -43,25 +43,26 @@ class AddCookbook extends React.Component {
         author: book.author,
         date: book.isoDate,
         blog: book.blog,
-        action: "Update"
+        action: 'Update',
       });
     } else {
       this.setState({
-        title: "",
-        author: "",
-        date: "",
-        blog: "",
-        action: "Add"
+        title: '',
+        author: '',
+        date: '',
+        blog: '',
+        action: 'Add',
       });
     }
   }
+
   handleInputChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
     this.setState({
-      [name]: value
+      [name]: value,
     });
   }
 
@@ -69,7 +70,7 @@ class AddCookbook extends React.Component {
     event.preventDefault();
     event.stopPropagation();
 
-    let validationErrors = [];
+    const validationErrors = [];
 
     const title = this.state.title;
     const author = this.state.author;
@@ -77,17 +78,17 @@ class AddCookbook extends React.Component {
     const date = this.state.date;
 
     if (!title) {
-      validationErrors.push("Title is required");
+      validationErrors.push('Title is required');
     }
 
     if (!author) {
-      validationErrors.push("Author is required");
+      validationErrors.push('Author is required');
     }
 
     // Return any validation errors
     if (validationErrors.length > 0) {
       this.setState({
-        error: validationErrors
+        error: validationErrors,
       });
       return;
     }
@@ -104,7 +105,7 @@ class AddCookbook extends React.Component {
   closeModal() {
     this.setState({
       error: null,
-      showModal: false
+      showModal: false,
     });
   }
 
@@ -128,22 +129,42 @@ class AddCookbook extends React.Component {
           <form id="add-cookbook" className="cookbook-form" onSubmit={this.handleSubmit}>
             {this.renderError()}
             <div>
-              Cookbook Title: {this.state.action === "Add" ?
-                  <input name="title" type="text" value={this.state.title} onChange={this.handleInputChange} />
+              Cookbook Title: {this.state.action === 'Add' ?
+                <input
+                  name="title" type="text" value={this.state.title}
+                  onChange={this.handleInputChange}
+                />
                   : <span>{this.state.title}</span>
                 }
             </div>
             <div>
-              Author: {this.state.action === "Add" ?
-                  <input name="author" type="text" value={this.state.author} onChange={this.handleInputChange}  />
+              Author: {this.state.action === 'Add' ?
+                <input
+                  name="author"
+                  type="text"
+                  value={this.state.author}
+                  onChange={this.handleInputChange}
+                />
                   : <span>{this.state.author}</span>
                 }
             </div>
             <div>
-              Blog: <input name="blog" type="text" value={this.state.blog} onChange={this.handleInputChange}  />
+              Blog:
+                <input
+                  name="blog"
+                  type="text"
+                  value={this.state.blog}
+                  onChange={this.handleInputChange}
+                />
             </div>
             <div>
-              Meeting Date: <input name="date" type="text" value={this.state.date} onChange={this.handleInputChange}  />
+              Meeting Date:
+                <input
+                  name="date"
+                  type="text"
+                  value={this.state.date}
+                  onChange={this.handleInputChange}
+                />
             </div>
           </form>
         </Modal.Body>
@@ -151,7 +172,7 @@ class AddCookbook extends React.Component {
           <Button onClick={this.handleSubmit}>{this.state.action} Cookbook</Button>
         </Modal.Footer>
       </Modal>
-    )
+    );
   }
 }
 
