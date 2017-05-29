@@ -54,35 +54,34 @@ class CookbookList extends React.Component {
 
   render() {
     const { cookbooks } = this.state;
-
-    let cookbookRows = [];
+    let cookbookTiles = [];
 
     if (cookbooks) {
-      cookbookRows = cookbooks.map((book, idx) => (
-        <tr
-          key={idx}
-        >
-          <td><Link to={'/recipes/'+encodeURIComponent(book.author)+'/'+encodeURIComponent(book.title)}>{book.title}</Link></td>
-          <td>{book.author}</td>
-          <td><a href={book.blog} target="_blank">{book.blog}</a></td>
-          <td>{book.displayDate}</td>
-          <td>
+      cookbookTiles = cookbooks.map((book, idx) => (
+        <article className="cookbook-item flex-item">
+          <Link to={'/recipes/'+encodeURIComponent(book.author)+'/'+encodeURIComponent(book.title)}>{book.title}</Link>
+          <br />
+          {book.author}
+          <br />
+          <a href={book.blog} target="_blank">{book.blog}</a>
+          <br />
+          {book.displayDate}
+
+          <br />
+          <Button
+            bsStyle="info"
+            onClick={() => this.editCookbook(book)}
+          >
+            Edit
+          </Button>
+          {!book.displayDate ?
             <Button
-              bsStyle="info"
-              onClick={() => this.editCookbook(book)}
+              bsStyle="danger"
+              onClick={() => this.deleteCookbook(book)}
             >
-              Edit
-            </Button>
-          </td>
-          <td>{!book.displayDate ?
-              <Button
-                bsStyle="danger"
-                onClick={() => this.deleteCookbook(book)}
-              >
-                X
-              </Button> : ""}
-          </td>
-        </tr>
+              X
+            </Button> : ""}
+        </article>
       ));
     }
 
@@ -97,21 +96,12 @@ class CookbookList extends React.Component {
           </Button>
 
         </div>
-        <table>
-         <thead>
-           <tr>
-             <th>Title</th>
-             <th>Author</th>
-             <th>Blog</th>
-             <th>Meeting Date</th>
-             <th></th>
-             <th></th>
-           </tr>
-         </thead>
-         <tbody>
-           {cookbookRows}
-         </tbody>
-       </table>
+
+       <section className="container">
+         <div className="flex">
+           {cookbookTiles}
+         </div>
+       </section>
 
        <AddCookbook book={this.state.currentBook} showModal={this.state.showModal}
          callback={this.refreshCookbookList} />

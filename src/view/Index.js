@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CookbookList from './CookbookList';
 import './Index.css';
+import './Cookbook.css';
 
 class Index extends Component {
   render() {
