@@ -42,6 +42,15 @@
   padding: 1em 0;
 }
 
+.button-action {
+  margin: 0.5em 0.2em 0;
+}
+
+.button-action--icon {
+  width: auto;
+  height: 1.5em;
+}
+
 @media screen and (max-width:500px) {
   .flex-item {
     flex-basis:100% !important;

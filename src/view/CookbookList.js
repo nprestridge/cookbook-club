@@ -71,15 +71,17 @@ class CookbookList extends React.Component {
           <Button
             bsStyle="info"
             onClick={() => this.editCookbook(book)}
+            className="button-action"
           >
-            Edit
+            <img src="edit.svg" alt="Edit" className="button-action--icon" />
           </Button>
           {!book.displayDate ?
             <Button
               bsStyle="danger"
               onClick={() => this.deleteCookbook(book)}
+              className="button-action"
             >
-              X
+              <img src="trash.svg" alt="Delete" className="button-action--icon" />
             </Button> : ""}
         </article>
       ));
