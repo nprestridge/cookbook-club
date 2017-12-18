@@ -13,6 +13,7 @@ class CookbookList extends React.Component {
     this.state = {
       cookbooks: [],
       showModal: false,
+      canEdit: false,  // TODO - Add logic to manage bookbooks
     };
 
     this.refreshCookbookList = this.refreshCookbookList.bind(this);
@@ -53,8 +54,24 @@ class CookbookList extends React.Component {
   }
 
   render() {
+    const { canEdit } = this.state;
     const { cookbooks } = this.state;
+
+    let addCookbookButton;
     let cookbookTiles = [];
+
+    if (canEdit) {
+      addCookbookButton = (
+        <div className="button-section">
+          <Button
+            bsStyle="primary"
+            onClick={() => this.addCookbook()}
+          >
+            Add Cookbook
+          </Button>
+        </div>
+      );
+    }
 
     if (cookbooks) {
       cookbookTiles = cookbooks.map((book, idx) => (
@@ -63,48 +80,45 @@ class CookbookList extends React.Component {
           <br />
           {book.author}
           <br />
-          <a href={book.blog} target="_blank">{book.blog}</a>
+          <a href={book.blog} target="_blank" rel="noopener noreferrer">{book.blog}</a>
           <br />
           {book.displayDate}
 
-          <br />
-          <Button
-            bsStyle="info"
-            onClick={() => this.editCookbook(book)}
-            className="button-action"
-          >
-            <img src="edit.svg" alt="Edit" className="button-action--icon" />
-          </Button>
-          {!book.displayDate ?
-            <Button
-              bsStyle="danger"
-              onClick={() => this.deleteCookbook(book)}
-              className="button-action"
-            >
-              <img src="trash.svg" alt="Delete" className="button-action--icon" />
-            </Button> : ""}
+          {canEdit ?
+            <div>
+              <Button
+                bsStyle="info"
+                onClick={() => this.editCookbook(book)}
+                className="button-action"
+              >
+                <img src="edit.svg" alt="Edit" className="button-action--icon" />
+              </Button>
+              {!book.displayDate ?
+                <Button
+                  bsStyle="danger"
+                  onClick={() => this.deleteCookbook(book)}
+                  className="button-action"
+                >
+                  <img src="trash.svg" alt="Delete" className="button-action--icon" />
+                </Button> : null}
+            </div>
+          : null}
+
         </article>
       ));
     }
 
     return (
       <div id="cookbook-list">
-        <div className="button-section">
-          <Button
-            bsStyle="primary"
-            onClick={() => this.addCookbook()}
-          >
-            Add Cookbook
-          </Button>
+        {addCookbookButton}
 
-        </div>
+        <section className="container">
+          <div className="flex">
+            {cookbookTiles}
+          </div>
+        </section>
 
-       <section className="container">
-         <div className="flex">
-           {cookbookTiles}
-         </div>
-       </section>
-
+       {/* Add Cookbook Modal */}
        <AddCookbook book={this.state.currentBook} showModal={this.state.showModal}
          callback={this.refreshCookbookList} />
      </div>
