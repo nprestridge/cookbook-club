@@ -76,13 +76,26 @@ class CookbookList extends React.Component {
     if (cookbooks) {
       cookbookTiles = cookbooks.map((book, idx) => (
         <article className="cookbook-item flex-item">
-          <Link to={'/recipes/'+encodeURIComponent(book.author)+'/'+encodeURIComponent(book.title)}>{book.title}</Link>
-          <br />
-          {book.author}
-          <br />
-          <a href={book.blog} target="_blank" rel="noopener noreferrer">{book.blog}</a>
-          <br />
-          {book.displayDate}
+          <Link to={'/recipes/'+encodeURIComponent(book.author)+'/'+encodeURIComponent(book.title)}>
+            <img className="cookbook-item__img" src="https://source.unsplash.com/250x150/?food" alt="{book.title}" />
+          </Link>
+          <div className="cookbook-item__title">
+            <Link to={'/recipes/'+encodeURIComponent(book.author)+'/'+encodeURIComponent(book.title)}>{book.title}</Link>
+          </div>
+          <div className="cookbook-item__author">
+            {book.author}
+          </div>
+          <div className="cookbook-item__date">
+            {book.displayDate}
+          </div>
+
+          <div className="cookbook-item__actions">
+            {book.blog ?
+              <Link to={book.blog} target="_blank" rel="noopener noreferrer">
+                <i className="fas fa-link"></i>
+              </Link>
+            : null}
+          </div>
 
           {canEdit ?
             <div>

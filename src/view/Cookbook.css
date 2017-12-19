@@ -15,31 +15,63 @@
   max-width: 100%;
   min-height: 10rem;
   margin: 1%;
-  border: 3px solid #ccc;
+  border: 2px solid #c6cd78;
   background: white;
+}
 
-  /* Min width */
-  /*&:nth-child(2n+3){
-    flex-basis:300px;
+@media (min-width: 40em) {
+  .flex-item {
+    min-height: 15rem;
   }
-  &:nth-child(4n+5){
-    flex-basis:450px;
-  }*/
-  /* End Min width */
-
-  /* Color */
-  /*&:nth-child(odd){
-    border-top-color: teal;
-  }
-  &:nth-child(even){
-    border-top-color: wheat;
-  }*/
-  /* End Color */
-
 }
 
 .cookbook-item {
   padding: 1em 0;
+}
+
+.cookbook-item__img {
+  float: left;
+  margin-right: 0.2em;
+  margin-left: 1em;
+  width: 50%;
+}
+
+.cookbook-item__title {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.cookbook-item__author {
+  font-size: 0.9em;
+  font-weight: bold;
+  font-variant: small-caps;
+}
+
+.cookbook-item__date {
+  font-size: 0.8em;
+}
+
+.cookbook-item__actions {
+  padding: 0.5em 0;
+  font-size: 1.5em;
+}
+
+@media (min-width: 40em) {
+  .cookbook-item__title {
+    font-size: 2em;
+  }
+
+  .cookbook-item__author {
+    font-size: 1.3em;
+  }
+
+  .cookbook-item__date {
+    font-size: 1em;
+  }
+
+  .cookbook-item__actions {
+    font-size: 2em;
+  }
 }
 
 .button-action {
@@ -49,11 +81,4 @@
 .button-action--icon {
   width: auto;
   height: 1.5em;
-}
-
-@media screen and (max-width:500px) {
-  .flex-item {
-    flex-basis:100% !important;
-    max-width:100%;
-  }
 }

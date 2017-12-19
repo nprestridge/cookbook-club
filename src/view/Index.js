@@ -7,12 +7,15 @@ class Index extends Component {
   render() {
     return (
       <div className="App">
-        <div className="header">
+
+        <header className="header">
           <img src="logo_banner.png" alt="Cookbook Club" height="100" width="300" />
-        </div>
-        <div>
+        </header>
+
+        <main className="content">
           <CookbookList />
-        </div>
+        </main>
+
       </div>
     );
   }

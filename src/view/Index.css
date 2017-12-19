@@ -1,7 +1,18 @@
+/* Responsive media - ensure images, etc. don't overflow out of their containers
+   ========================================================================== */
+img,
+video,
+svg,
+embed,
+object,
+iframe {
+  max-width: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .App {
@@ -24,6 +35,17 @@ body {
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+a:link,
+a:visited {
+  color: #8e3343;
+}
+
+a:hover,
+a:active {
+  color: #ec9454;
+  text-decoration: none;
 }
 
 table,
