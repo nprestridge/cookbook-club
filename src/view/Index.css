@@ -15,26 +15,13 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
 .header {
+  text-align: center;
   background-color: #c6cd78;
 }
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.content {
+  text-align: center;
 }
 
 a:link,
@@ -64,12 +51,4 @@ th,
 td {
   padding: 5px;
   text-align: left;
-}
-
-.cookbook-form {
-  padding: 20px;
-}
-
-.button-section {
-  padding-top: 5px;
 }

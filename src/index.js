@@ -3,15 +3,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 /** VIEWS */
-import App from './App';
 import Index from './view/Index';
+import CookbookList from './view/CookbookList';
 import CookbookRecipes from './view/CookbookRecipes';
 
 ReactDOM.render(
   <Router history={browserHistory}>
-    <Route component={App}>
-      <Route path="/" component={Index} />
-      <Route path="/recipes/:author/:book" component={CookbookRecipes} />
+    <Route component={Index}>
+      <Route path="/" components={{ main: CookbookList }} />
+      <Route path="/recipes/:author/:book" components={{ main: CookbookRecipes }} />
     </Route>
   </Router>,
   document.getElementById('root')

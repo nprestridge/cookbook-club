@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-import CookbookList from './CookbookList';
 import './Index.css';
-import './Cookbook.css';
 
 class Index extends Component {
   render() {
+    const { main } = this.props;
     return (
-      <div className="App">
-
+      <div>
         <header className="header">
-          <img src="logo_banner.png" alt="Cookbook Club" height="100" width="300" />
+          <a href="/">
+            <img src="/logo_banner.png" alt="Cookbook Club" height="100" width="300" />
+          </a>
         </header>
 
         <main className="content">
-          <CookbookList />
+          {main}
         </main>
-
       </div>
     );
   }

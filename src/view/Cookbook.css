@@ -74,6 +74,14 @@
   }
 }
 
+.cookbook-form {
+  padding: 20px;
+}
+
+.button-section {
+  padding-top: 5px;
+}
+
 .button-action {
   margin: 0.5em 0.2em 0;
 }
