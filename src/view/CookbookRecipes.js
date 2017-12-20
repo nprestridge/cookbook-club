@@ -2,6 +2,8 @@ import React from 'react';
 import Api from './../controller/Api.js';
 import { Link } from 'react-router';
 
+import './Recipe.css';
+
 class CookbookRecipes extends React.Component {
   state = {
     recipes: []
@@ -41,27 +43,24 @@ class CookbookRecipes extends React.Component {
     }
 
     return (
-      <div className="App">
-        <div className="App-header">
-          <em>{book}</em> by {author}
-        </div>
-        <div>
+      <div>
+        <h1 className="recipe-list__heading"><em>{book}</em> by {author}</h1>
+        <div className="recipe-list">
           <table>
            <thead>
              <tr>
-               <th>Recipe</th>
-               <th>Page</th>
-               <th>Brought by</th>
+               <th className="recipe-list__header">Recipe</th>
+               <th className="recipe-list__header">Page</th>
+               <th className="recipe-list__header">Cook</th>
              </tr>
            </thead>
            <tbody>
              {recipeRows.length > 0 ?
                recipeRows
-               : <tr><td colSpan='3'>Add recipes!</td></tr>
+               : <tr><td colSpan='3'>Get hungry!</td></tr>
              }
            </tbody>
          </table>
-          <p><Link to={`/`}>Cookbook Club Meetings</Link></p>
         </div>
       </div>
     );

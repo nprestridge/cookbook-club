@@ -20,10 +20,6 @@ body {
   background-color: #c6cd78;
 }
 
-.content {
-  text-align: center;
-}
-
 a:link,
 a:visited {
   color: #8e3343;
@@ -33,22 +29,4 @@ a:hover,
 a:active {
   color: #ec9454;
   text-decoration: none;
-}
-
-table,
-th,
-td {
-  border: 1px solid black;
-  border-collapse: collapse;
-  margin: 1.5em 0 0 2em;
-}
-
-table {
-  margin-top: 10px;
-}
-
-th,
-td {
-  padding: 5px;
-  text-align: left;
 }
