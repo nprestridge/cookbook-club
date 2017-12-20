@@ -1,6 +1,5 @@
 import React from 'react';
 import Api from './../controller/Api.js';
-import { Link } from 'react-router';
 
 import './Recipe.css';
 
