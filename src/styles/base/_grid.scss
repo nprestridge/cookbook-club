@@ -1,0 +1,19 @@
+// Flexbox properties
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// Horizontal children alignment
+.flex--stretch { // Stretch to fill the row with first item at start
+  justify-content: space-between;
+}
+
+// Children
+.flex-item {
+  margin: 1%;
+
+  @media (min-width: $mq-xsmall) {
+    flex-basis: 48%; // 2 column
+  }
+}

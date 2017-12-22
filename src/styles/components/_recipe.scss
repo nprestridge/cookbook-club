@@ -1,0 +1,39 @@
+// Recipe List Styles
+.recipe_list--heading {
+  font-size: 2em;
+  color: $lime-green;
+
+  @media (min-width: $mq-xsmall) {
+    font-size: 2.5em;
+  }
+}
+
+.recipe_list {
+  table,
+  th,
+  td {
+    padding: 0.3em 1em;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: $light-gray;
+  }
+
+  @media (min-width: $mq-xsmall) {
+    td {
+      font-size: 1.1em;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+    }
+  }
+
+  .recipe_list--title {
+    text-transform: uppercase;
+    font-size: 1.2em;
+    letter-spacing: 0.1em;
+
+    @media (min-width: $mq-xsmall) {
+      font-size: 1.3em;
+    }
+  }
+}

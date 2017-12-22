@@ -12,7 +12,7 @@ class Index extends Component {
           </a>
         </header>
 
-        <main>
+        <main className="container">
           {main}
         </main>
       </div>

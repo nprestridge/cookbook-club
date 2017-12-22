@@ -1,3 +1,15 @@
-@import './App.scss';
-@import './Cookbook.scss';
-@import './Recipe.scss';
+// Variables
+@import 'variables/_media-queries.scss';
+@import 'variables/_colors.scss';
+@import 'variables/_fonts.scss';
+
+// Shared
+@import 'base/_reset.scss';
+@import 'base/_typography.scss';
+@import 'base/_grid.scss';
+@import 'base/_layout.scss';
+@import 'base/_header.scss';
+
+// Pages
+@import 'components/_cookbook.scss';
+@import 'components/_recipe.scss';

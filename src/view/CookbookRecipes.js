@@ -41,14 +41,14 @@ class CookbookRecipes extends React.Component {
 
     return (
       <div>
-        <h1 className="recipe-list__heading"><em>{book}</em> by {author}</h1>
-        <div className="recipe-list">
+        <h1 className="recipe_list--heading"><em>{book}</em> by {author}</h1>
+        <div className="recipe_list">
           <table>
            <thead>
              <tr>
-               <th className="recipe-list__header">Recipe</th>
-               <th className="recipe-list__header">Page</th>
-               <th className="recipe-list__header">Cook</th>
+               <th className="recipe_list--title">Recipe</th>
+               <th className="recipe_list--title">Page</th>
+               <th className="recipe_list--title">Cook</th>
              </tr>
            </thead>
            <tbody>

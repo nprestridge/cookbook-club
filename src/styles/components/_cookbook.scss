@@ -1,0 +1,63 @@
+// Cookbooks List Styles
+.cookbook_item {
+  padding-top: 1em;
+  text-align: center;
+  border: 2px solid $lime-green;
+}
+
+.cookbook_item--image {
+  width: 90%;
+  margin-bottom: 1em;
+
+  @media (min-width: $mq-small) {
+    float: left;
+    margin: 0 0.2em 1em 1em;
+    width: 50%;
+  }
+}
+
+.cookbook_item--title {
+  font-size: 1.4em;
+  font-weight: $bold;
+
+  @media (min-width: $mq-xsmall) {
+    font-size: 2em;
+  }
+}
+
+.cookbook_item--author {
+  font-size: 1.3em;
+  font-weight: $bold;
+  font-variant: small-caps;
+}
+
+.cookbook_item--date {
+  font-size: 1em;
+}
+
+.cookbook_item--actions {
+  padding: 0.5em 0;
+  font-size: 1.5em;
+
+  @media (min-width: $mq-xsmall) {
+    font-size: 2em;
+  }
+}
+
+// Cookbook Management
+.cookbook_form {
+  padding: 20px;
+}
+
+.button_add {
+  padding-top: 5px;
+}
+
+.button--action {
+  margin: 0.5em 0.2em 0;
+}
+
+.button--action-icon {
+  width: auto;
+  height: 1.5em;
+}
