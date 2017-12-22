@@ -43,3 +43,6 @@ src/config/production.json
 
 # production
 /build
+
+# Compiled CSS
+src/**/*.css

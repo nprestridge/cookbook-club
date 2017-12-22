@@ -1,8 +1,6 @@
 import React from 'react';
 import Api from './../controller/Api.js';
 
-import './Recipe.css';
-
 class CookbookRecipes extends React.Component {
   state = {
     recipes: []
