@@ -8,7 +8,7 @@ class Index extends Component {
       <div>
         <header className="header">
           <a href="/">
-            <img src="/logo_banner.png" alt="Cookbook Club" height="100" width="300" />
+            <img src="/images/logo_banner.png" alt="Cookbook Club" height="100" width="300" />
           </a>
         </header>
 

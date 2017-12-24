@@ -6,13 +6,17 @@
 }
 
 .cookbook_item--image {
-  width: 90%;
+  width: 85%;
   margin-bottom: 1em;
+
+  @media (min-width: $mq-xxsmall) {
+    width: 75%;
+  }
 
   @media (min-width: $mq-small) {
     float: left;
     margin: 0 0.2em 1em 1em;
-    width: 50%;
+    width: 45%;
   }
 }
 

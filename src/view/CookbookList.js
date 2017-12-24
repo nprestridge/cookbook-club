@@ -77,7 +77,10 @@ class CookbookList extends React.Component {
       cookbookTiles = cookbooks.map((book, idx) => (
         <article className="flex-item cookbook_item">
           <Link to={'/recipes/'+encodeURIComponent(book.author)+'/'+encodeURIComponent(book.title)}>
-            <img className="cookbook_item--image" src="https://source.unsplash.com/800x600/?food" alt="{book.title}" />
+            {book.thumbnail ?
+              <img className="cookbook_item--image" src={book.thumbnail} alt={book.title} />
+            : <img className="cookbook_item--image" src="/images/default_book.jpg" alt="{book.title}" />
+            }
           </Link>
           <div className="cookbook_item--title">
             <Link to={'/recipes/'+encodeURIComponent(book.author)+'/'+encodeURIComponent(book.title)}>{book.title}</Link>
