@@ -1,6 +1,21 @@
 // Shared layouts
+header,
+footer {
+  text-align: center;
+  background-color: $lime-green;
+}
+
 .container {
   max-width: 1400px;
   width: auto;
   margin: 1em auto;
+}
+
+.footer {
+  padding: 0.5em 0;
+}
+
+.footer--text {
+  font-size: 0.8em;
+  color: $white;
 }
