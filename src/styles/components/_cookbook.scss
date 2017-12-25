@@ -1,8 +1,10 @@
 // Cookbooks List Styles
 .cookbook_item {
+  margin: 0.4em;
   padding-top: 1em;
   text-align: center;
   border: 2px solid $lime-green;
+  border-radius: 10px;
 }
 
 .cookbook_item--image {
