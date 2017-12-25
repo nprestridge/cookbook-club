@@ -23,7 +23,7 @@
 }
 
 .cookbook_item--title {
-  font-size: 1.4em;
+  font-size: 1.6em;
   font-weight: $bold;
 
   @media (min-width: $mq-xsmall) {
@@ -42,11 +42,19 @@
 }
 
 .cookbook_item--actions {
-  padding: 0.5em 0;
-  font-size: 1.5em;
+  padding: 0.3em 0 0.5em;
+  font-size: 2em;
 
-  @media (min-width: $mq-xsmall) {
-    font-size: 2em;
+  .action--icon {
+    margin-right: 0.3em;
+    margin-left: 0.3em;
+  }
+
+  /* Hack the FA amazon icon to match same height as other actions */
+  .action--icon-amazon {
+    position: relative;
+    top: 5px;
+    font-size: 34px;
   }
 }
 

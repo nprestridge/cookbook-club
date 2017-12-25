@@ -93,11 +93,22 @@ class CookbookList extends React.Component {
           </div>
 
           <div className="cookbook_item--actions">
-            {book.blog ?
-              <Link to={book.blog} target="_blank" rel="noopener noreferrer">
-                <i className="fas fa-link"></i>
+            {book.amazon ?
+              <Link
+                to={book.amazon} target="_blank" rel="noopener noreferrer"
+                className="action--icon action--icon-amazon"
+              >
+                <i className="fab fa-amazon icon fa-sm fa-fw" />
               </Link>
-            : null}
+              : null}
+            {book.blog ?
+              <Link
+                to={book.blog} target="_blank" rel="noopener noreferrer"
+                className="action--icon"
+              >
+                <i className="fas fa-external-link-alt fa-sm fa-fw" />
+              </Link>
+              : null}
           </div>
 
           {canEdit ?
