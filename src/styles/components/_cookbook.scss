@@ -12,13 +12,12 @@
   margin-bottom: 1em;
 
   @media (min-width: $mq-xxsmall) {
-    width: 75%;
+    width: 50%;
   }
 
   @media (min-width: $mq-small) {
     float: left;
     margin: 0 0.2em 1em 1em;
-    width: 45%;
   }
 }
 
