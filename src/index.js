@@ -1,4 +1,4 @@
-import { Router, Route, browserHistory } from 'react-router'
+import { Router, Route, browserHistory } from 'react-router';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -14,5 +14,5 @@ ReactDOM.render(
       <Route path="/recipes/:author/:book" components={{ main: CookbookRecipes }} />
     </Route>
   </Router>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

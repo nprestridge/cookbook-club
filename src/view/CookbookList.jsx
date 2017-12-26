@@ -7,7 +7,6 @@ import AddCookbook from './AddCookbook';
 import Api from './../controller/Api';
 
 class CookbookList extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -64,14 +63,14 @@ class CookbookList extends React.Component {
     if (cookbooks) {
       cookbookTiles = cookbooks.map((book, idx) => (
         <article className="flex-item cookbook_item">
-          <Link to={'/recipes/'+encodeURIComponent(book.author)+'/'+encodeURIComponent(book.title)}>
+          <Link to={`/recipes/${encodeURIComponent(book.author)}/${encodeURIComponent(book.title)}`}>
             {book.thumbnail ?
               <img className="cookbook_item--image" src={book.thumbnail} alt={book.title} />
-            : <img className="cookbook_item--image" src="/images/default_book.jpg" alt="{book.title}" />
+              : <img className="cookbook_item--image" src="/images/default_book.jpg" alt="{book.title}" />
             }
           </Link>
           <div className="cookbook_item--title">
-            <Link to={'/recipes/'+encodeURIComponent(book.author)+'/'+encodeURIComponent(book.title)}>{book.title}</Link>
+            <Link to={`/recipes/${encodeURIComponent(book.author)}/${encodeURIComponent(book.title)}`}>{book.title}</Link>
           </div>
           <div className="cookbook_item--author">
             {book.author}

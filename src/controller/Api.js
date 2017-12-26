@@ -36,8 +36,8 @@ function updateCookbook(title, author, blog, date, cb) {
   const body = {
     params: {
       path: {
-        author: author,
-        title: title,
+        author,
+        title,
       },
     },
   };
@@ -66,8 +66,8 @@ function deleteCookbook(title, author, cb) {
   const body = {
     params: {
       path: {
-        author: author,
-        title: title
+        author,
+        title,
       },
     },
   };

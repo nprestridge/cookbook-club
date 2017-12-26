@@ -4,7 +4,6 @@ import { Button, Modal } from 'react-bootstrap';
 import Api from './../controller/Api';
 
 class AddCookbook extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -134,8 +133,8 @@ class AddCookbook extends React.Component {
                   name="title" type="text" value={this.state.title}
                   onChange={this.handleInputChange}
                 />
-                  : <span>{this.state.title}</span>
-                }
+                : <span>{this.state.title}</span>
+              }
             </div>
             <div>
               Author: {this.state.action === 'Add' ?
@@ -145,26 +144,26 @@ class AddCookbook extends React.Component {
                   value={this.state.author}
                   onChange={this.handleInputChange}
                 />
-                  : <span>{this.state.author}</span>
-                }
+                : <span>{this.state.author}</span>
+              }
             </div>
             <div>
               Blog:
-                <input
-                  name="blog"
-                  type="text"
-                  value={this.state.blog}
-                  onChange={this.handleInputChange}
-                />
+              <input
+                name="blog"
+                type="text"
+                value={this.state.blog}
+                onChange={this.handleInputChange}
+              />
             </div>
             <div>
               Meeting Date:
-                <input
-                  name="date"
-                  type="text"
-                  value={this.state.date}
-                  onChange={this.handleInputChange}
-                />
+              <input
+                name="date"
+                type="text"
+                value={this.state.date}
+                onChange={this.handleInputChange}
+              />
             </div>
           </form>
         </Modal.Body>

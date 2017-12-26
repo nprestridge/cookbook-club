@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 
 export default class App extends Component {
-
   // used with the force redirect
   componentWillReceiveProps(nextProps) {
     this.setState({
-      children: nextProps.children
+      children: nextProps.children,
     });
   }
 
