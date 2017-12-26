@@ -2,6 +2,7 @@ import { Link } from 'react-router';
 import { Button } from 'react-bootstrap';
 import React from 'react';
 
+import Spinner from './Spinner';
 import AddCookbook from './AddCookbook';
 import Api from './../controller/Api';
 
@@ -11,9 +12,10 @@ class CookbookList extends React.Component {
     super(props);
 
     this.state = {
+      isLoading: true,
       cookbooks: [],
       showModal: false,
-      canEdit: false,  // TODO - Add logic to manage bookbooks
+      canEdit: false, // TODO - Add logic to manage bookbooks
     };
 
     this.refreshCookbookList = this.refreshCookbookList.bind(this);
@@ -28,6 +30,7 @@ class CookbookList extends React.Component {
       this.setState({
         cookbooks: books,
         showModal: false,
+        isLoading: false,
       });
     });
   }
@@ -54,24 +57,9 @@ class CookbookList extends React.Component {
   }
 
   render() {
-    const { canEdit } = this.state;
-    const { cookbooks } = this.state;
+    const { canEdit, cookbooks } = this.state;
 
-    let addCookbookButton;
     let cookbookTiles = [];
-
-    if (canEdit) {
-      addCookbookButton = (
-        <div className="button_add">
-          <Button
-            bsStyle="primary"
-            onClick={() => this.addCookbook()}
-          >
-            Add Cookbook
-          </Button>
-        </div>
-      );
-    }
 
     if (cookbooks) {
       cookbookTiles = cookbooks.map((book, idx) => (
@@ -129,23 +117,41 @@ class CookbookList extends React.Component {
                   <img src="trash.svg" alt="Delete" className="button--action--icon" />
                 </Button> : null}
             </div>
-          : null}
+            : null}
 
         </article>
       ));
     }
 
     return (
-      <div id="cookbook-list">
-        {addCookbookButton}
+      <div >
+        {this.state.isLoading &&
+          <Spinner />
+        }
 
-        <div className="flex flex--stretch">
+        {this.state.canEdit &&
+          <div className="button_add">
+            <Button
+              bsStyle="primary"
+              onClick={() => this.addCookbook()}
+            >
+              Add Cookbook
+            </Button>
+          </div>
+        }
+
+        <section className="flex flex--stretch">
           {cookbookTiles}
-        </div>
+        </section>
 
-       {/* Add Cookbook Modal */}
-       <AddCookbook book={this.state.currentBook} showModal={this.state.showModal}
-         callback={this.refreshCookbookList} />
+        {this.state.canEdit &&
+          /* Add Cookbook Modal */
+          <AddCookbook
+            book={this.state.currentBook}
+            showModal={this.state.showModal}
+            callback={this.refreshCookbookList}
+          />
+        }
       </div>
     );
   }
