@@ -1,5 +1,6 @@
 import React from 'react';
-import Api from './../controller/Api.js';
+import PropTypes from 'prop-types';
+import Api from './../controller/Api';
 import Spinner from './Spinner';
 
 class CookbookRecipes extends React.Component {
@@ -32,9 +33,9 @@ class CookbookRecipes extends React.Component {
     let recipeRows = [];
 
     if (recipes) {
-      recipeRows = recipes.map((recipe, idx) => (
+      recipeRows = recipes.map(recipe => (
         <tr
-          key={idx}
+          key={recipe.name}
         >
           {recipe.link ?
             <td><a href={recipe.link} target="_blank">{recipe.name}</a></td>
@@ -76,5 +77,9 @@ class CookbookRecipes extends React.Component {
     );
   }
 }
+
+CookbookRecipes.propTypes = {
+  params: PropTypes.objectOf(PropTypes.string).isRequired,
+};
 
 export default CookbookRecipes;

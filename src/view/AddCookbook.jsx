@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Modal } from 'react-bootstrap';
 
 import Api from './../controller/Api';
@@ -111,8 +112,8 @@ class AddCookbook extends React.Component {
   renderError() {
     if (!this.state.error) { return null; }
 
-    const errorList = this.state.error.map((error, idx) => (
-      <div key={idx}>{error}</div>
+    const errorList = this.state.error.map(error => (
+      <div key={error}>{error}</div>
     ));
 
     return <div style={{ color: 'red' }}>Please fix the following errors: {errorList}</div>;
@@ -120,6 +121,8 @@ class AddCookbook extends React.Component {
 
   render() {
     return (
+      // TODO: Revisit modal
+      // eslint-disable-next-line react/jsx-no-bind
       <Modal show={this.state.showModal} onHide={this.closeModal.bind(this)}>
         <Modal.Header closeButton>
           <Modal.Title>{this.state.action} Cookbook</Modal.Title>
@@ -130,7 +133,9 @@ class AddCookbook extends React.Component {
             <div>
               Cookbook Title: {this.state.action === 'Add' ?
                 <input
-                  name="title" type="text" value={this.state.title}
+                  name="title"
+                  type="text"
+                  value={this.state.title}
                   onChange={this.handleInputChange}
                 />
                 : <span>{this.state.title}</span>
@@ -174,5 +179,15 @@ class AddCookbook extends React.Component {
     );
   }
 }
+
+AddCookbook.propTypes = {
+  book: PropTypes.objectOf(PropTypes.string),
+  showModal: PropTypes.bool.isRequired,
+  callback: PropTypes.func.isRequired,
+};
+
+AddCookbook.defaultProps = {
+  book: {},
+};
 
 export default AddCookbook;

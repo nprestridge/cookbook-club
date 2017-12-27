@@ -1,13 +1,17 @@
 /**
  * Load config for ENV
  */
+
+const production = require('./config/production.json');
+const local = require('./config/local.json');
+
 class Config {
   static load() {
     // default
-    let config = require('./config/production.json');
+    let config = production;
 
     if (process.env.REACT_APP_API_ENV === 'local') {
-      config = require('./config/local.json');
+      config = local;
     }
 
     return config;

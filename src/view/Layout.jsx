@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../styles/index.css';
 
 const Layout = (props) => {
@@ -24,6 +25,10 @@ const Layout = (props) => {
       </footer>
     </div>
   );
+};
+
+Layout.propTypes = {
+  main: PropTypes.element.isRequired,
 };
 
 export default Layout;
