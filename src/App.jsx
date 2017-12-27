@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Router, Route, browserHistory } from 'react-router';
 
-export default class App extends Component {
-  // used with the force redirect
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      children: nextProps.children,
-    });
-  }
+/** VIEWS */
+import Index from './view/Index';
+import CookbookList from './view/CookbookList';
+import CookbookRecipes from './view/CookbookRecipes';
 
-  render() {
-    return (
-      // header here
-      <div>
-        {this.props.children}
-      </div>
-      // nav here
-    );
-  }
-}
+const App = () => (
+  <Router history={browserHistory}>
+    <Route component={Index}>
+      <Route path="/" components={{ main: CookbookList }} />
+      <Route path="/recipes/:author/:book" components={{ main: CookbookRecipes }} />
+    </Route>
+  </Router>
+);
+
+export default App;
