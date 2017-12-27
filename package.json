@@ -29,8 +29,10 @@
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
-    "lint": "./node_modules/.bin/eslint public/** src/**",
-    "test": "react-scripts test --env=jsdom",
+    "test-lint-js": "eslint --ext=js --ext=jsx src/**",
+    "test-lint-css": "stylelint **/*.scss",
+    "test-unit": "react-scripts test --env=jsdom",
+    "test": "run-s test-**",
     "eject": "react-scripts eject"
   }
 }
