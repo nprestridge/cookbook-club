@@ -17,4 +17,4 @@ deployment:
     branch: deploy
     commands:
       - npm run build
-      - aws s3 sync build/ s3://cookbook-club-site/
+      - aws s3 sync build/ s3://cookbook-club-site/ --delete --cache-control max-age=31536000,public
