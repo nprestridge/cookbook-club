@@ -37,11 +37,13 @@ class CookbookRecipes extends React.Component {
         <tr
           key={recipe.name}
         >
-          {recipe.link ?
-            <td><a href={recipe.link} target="_blank">{recipe.name}</a></td>
-            : <td>{recipe.name}</td>
-          }
-          <td>{recipe.page}</td>
+          <td>
+            {recipe.link ?
+              <a href={recipe.link} target="_blank">{recipe.name}</a>
+              : <span>{recipe.name}</span>
+            }
+            <span>{recipe.page ? ` (p. ${recipe.page})` : ''}</span>
+          </td>
           <td>{recipe.cook}</td>
         </tr>
       ));
@@ -59,14 +61,13 @@ class CookbookRecipes extends React.Component {
                 <thead>
                   <tr>
                     <th className="recipe_list--title">Recipe</th>
-                    <th className="recipe_list--title">Page</th>
                     <th className="recipe_list--title">Cook</th>
                   </tr>
                 </thead>
                 <tbody>
                   {recipeRows.length > 0 ?
                     recipeRows
-                    : <tr><td colSpan="3">Get hungry!</td></tr>
+                    : <tr><td colSpan="2">Get hungry!</td></tr>
                   }
                 </tbody>
               </table>
