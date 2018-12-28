@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import Api from './../controller/Api';
 import Spinner from './Spinner';
@@ -29,6 +30,8 @@ class CookbookRecipes extends React.Component {
 
   render() {
     const { book, author, recipes } = this.state;
+    const title = `Cookbook Club | ${book}`;
+    const description = `Cookbook Club - ${book} by ${author}`;
 
     let recipeRows = [];
 
@@ -51,6 +54,11 @@ class CookbookRecipes extends React.Component {
 
     return (
       <div>
+        <Helmet>
+          <title>{title}</title>
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={description} />
+        </Helmet>
         {this.state.isLoading ?
           <Spinner />
           :
