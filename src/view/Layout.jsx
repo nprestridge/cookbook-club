@@ -21,7 +21,9 @@ const Layout = (props) => {
       </main>
 
       <footer className="footer footer--text">
-        &copy; {year} Nancy&apos;s Hearth.  All rights reserved.
+        &copy;&nbsp;
+        {year}
+        &nbsp;Nancy&apos;s Hearth.  All rights reserved.
       </footer>
     </div>
   );

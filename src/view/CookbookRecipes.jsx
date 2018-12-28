@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet, { HelmetProvider } from 'react-helmet-async';
 import PropTypes from 'prop-types';
-import Api from './../controller/Api';
+import Api from '../controller/Api';
 import Spinner from './Spinner';
 
 class CookbookRecipes extends React.Component {
@@ -15,8 +15,8 @@ class CookbookRecipes extends React.Component {
   }
 
   componentDidMount() {
-    const book = this.props.params.book;
-    const author = this.props.params.author;
+    const { params } = this.props;
+    const { book, author } = params;
 
     Api.getCookbookRecipes(encodeURIComponent(author), encodeURIComponent(book), (recipes) => {
       this.setState({
@@ -29,7 +29,10 @@ class CookbookRecipes extends React.Component {
   }
 
   render() {
-    const { book, author, recipes } = this.state;
+    const {
+      book, author, recipes, isLoading,
+    } = this.state;
+
     const title = `Cookbook Club | ${book}`;
     const description = `Cookbook Club - ${book} by ${author}`;
 
@@ -41,8 +44,8 @@ class CookbookRecipes extends React.Component {
           key={recipe.name}
         >
           <td>
-            {recipe.link ?
-              <a href={recipe.link} target="_blank">{recipe.name}</a>
+            {recipe.link
+              ? <a href={recipe.link} target="_blank" rel="noopener noreferrer">{recipe.name}</a>
               : <span>{recipe.name}</span>
             }
             <span>{recipe.page ? ` (p. ${recipe.page})` : ''}</span>
@@ -61,28 +64,33 @@ class CookbookRecipes extends React.Component {
             <meta property="og:description" content={description} />
           </Helmet>
         </HelmetProvider>
-        {this.state.isLoading ?
-          <Spinner />
-          :
-          <section>
-            <h1 className="recipe_list--heading"><em>{book}</em> by {author}</h1>
-            <div className="recipe_list">
-              <table>
-                <thead>
-                  <tr>
-                    <th className="recipe_list--title">Recipe</th>
-                    <th className="recipe_list--title">Cook</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {recipeRows.length > 0 ?
-                    recipeRows
-                    : <tr><td colSpan="2">Get hungry!</td></tr>
-                  }
-                </tbody>
-              </table>
-            </div>
-          </section>
+        {isLoading
+          ? <Spinner />
+          : (
+            <section>
+              <h1 className="recipe_list--heading">
+                <em>{book}</em>
+                &nbsp;by&nbsp;
+                {author}
+              </h1>
+              <div className="recipe_list">
+                <table>
+                  <thead>
+                    <tr>
+                      <th className="recipe_list--title">Recipe</th>
+                      <th className="recipe_list--title">Cook</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {recipeRows.length > 0
+                      ? recipeRows
+                      : <tr><td colSpan="2">Get hungry!</td></tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          )
         }
       </div>
     );

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Modal } from 'react-bootstrap';
 
-import Api from './../controller/Api';
+import Api from '../controller/Api';
 
 class AddCookbook extends React.Component {
   constructor(props) {
@@ -24,20 +24,23 @@ class AddCookbook extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.callback) {
-      this.parentCallback = this.props.callback.bind(this);
+    const { callback } = this.props;
+    if (callback) {
+      this.parentCallback = callback.bind(this);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.state.showModal !== nextProps.showModal) {
+    const { showModal } = this.props;
+    const { book } = nextProps;
+
+    if (showModal !== nextProps.showModal) {
       this.setState({
         showModal: nextProps.showModal,
       });
     }
 
     if (nextProps.book) {
-      const book = nextProps.book;
       this.setState({
         title: book.title,
         author: book.author,
@@ -57,9 +60,9 @@ class AddCookbook extends React.Component {
   }
 
   handleInputChange(event) {
-    const target = event.target;
+    const { target } = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
+    const { name } = target;
 
     this.setState({
       [name]: value,
@@ -72,10 +75,9 @@ class AddCookbook extends React.Component {
 
     const validationErrors = [];
 
-    const title = this.state.title;
-    const author = this.state.author;
-    const blog = this.state.blog;
-    const date = this.state.date;
+    const {
+      title, author, blog, date,
+    } = this.state;
 
     if (!title) {
       validationErrors.push('Title is required');
@@ -110,46 +112,65 @@ class AddCookbook extends React.Component {
   }
 
   renderError() {
-    if (!this.state.error) { return null; }
+    const { error } = this.state;
+    if (!error) { return null; }
 
-    const errorList = this.state.error.map(error => (
-      <div key={error}>{error}</div>
+    const errorList = error.map(e => (
+      <div key={e}>{e}</div>
     ));
 
-    return <div style={{ color: 'red' }}>Please fix the following errors: {errorList}</div>;
+    return (
+      <div style={{ color: 'red' }}>
+      Please fix the following errors:
+        {errorList}
+      </div>
+    );
   }
 
   render() {
+    const {
+      showModal, action, title, author, blog, date,
+    } = this.state;
+
     return (
       // TODO: Revisit modal
       // eslint-disable-next-line react/jsx-no-bind
-      <Modal show={this.state.showModal} onHide={this.closeModal.bind(this)}>
+      <Modal show={showModal} onHide={this.closeModal.bind(this)}>
         <Modal.Header closeButton>
-          <Modal.Title>{this.state.action} Cookbook</Modal.Title>
+          <Modal.Title>
+            {action}
+            Cookbook
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form id="add-cookbook" className="cookbook_form" onSubmit={this.handleSubmit}>
             {this.renderError()}
             <div>
-              Cookbook Title: {this.state.action === 'Add' ?
-                <input
-                  name="title"
-                  type="text"
-                  value={this.state.title}
-                  onChange={this.handleInputChange}
-                />
-                : <span>{this.state.title}</span>
+              Cookbook Title:
+              {action === 'Add'
+                ? (
+                  <input
+                    name="title"
+                    type="text"
+                    value={title}
+                    onChange={this.handleInputChange}
+                  />
+                )
+                : <span>{title}</span>
               }
             </div>
             <div>
-              Author: {this.state.action === 'Add' ?
-                <input
-                  name="author"
-                  type="text"
-                  value={this.state.author}
-                  onChange={this.handleInputChange}
-                />
-                : <span>{this.state.author}</span>
+              Author:
+              {action === 'Add'
+                ? (
+                  <input
+                    name="author"
+                    type="text"
+                    value={author}
+                    onChange={this.handleInputChange}
+                  />
+                )
+                : <span>{author}</span>
               }
             </div>
             <div>
@@ -157,7 +178,7 @@ class AddCookbook extends React.Component {
               <input
                 name="blog"
                 type="text"
-                value={this.state.blog}
+                value={blog}
                 onChange={this.handleInputChange}
               />
             </div>
@@ -166,14 +187,17 @@ class AddCookbook extends React.Component {
               <input
                 name="date"
                 type="text"
-                value={this.state.date}
+                value={date}
                 onChange={this.handleInputChange}
               />
             </div>
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.handleSubmit}>{this.state.action} Cookbook</Button>
+          <Button onClick={this.handleSubmit}>
+            {action}
+            Cookbook
+          </Button>
         </Modal.Footer>
       </Modal>
     );

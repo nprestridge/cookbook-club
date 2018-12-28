@@ -4,7 +4,7 @@ import React from 'react';
 
 import Spinner from './Spinner';
 import AddCookbook from './AddCookbook';
-import Api from './../controller/Api';
+import Api from '../controller/Api';
 
 class CookbookList extends React.Component {
   constructor(props) {
@@ -56,7 +56,9 @@ class CookbookList extends React.Component {
   }
 
   render() {
-    const { canEdit, cookbooks } = this.state;
+    const {
+      canEdit, cookbooks, isLoading, currentBook, showModal,
+    } = this.state;
 
     let cookbookTiles = [];
 
@@ -64,13 +66,15 @@ class CookbookList extends React.Component {
       cookbookTiles = cookbooks.map(book => (
         <article className="flex-item cookbook_item" key={book.title}>
           <Link to={`/recipes/${encodeURIComponent(book.author)}/${encodeURIComponent(book.title)}`}>
-            {book.thumbnail ?
-              <img className="cookbook_item--image" src={book.thumbnail} alt={book.title} />
-              : <img
-                className="cookbook_item--image"
-                src="/images/default_book.jpg"
-                alt="{book.title}"
-              />
+            {book.thumbnail
+              ? <img className="cookbook_item--image" src={book.thumbnail} alt={book.title} />
+              : (
+                <img
+                  className="cookbook_item--image"
+                  src="/images/default_book.jpg"
+                  alt="{book.title}"
+                />
+              )
             }
           </Link>
           <div className="cookbook_item--title">
@@ -84,46 +88,54 @@ class CookbookList extends React.Component {
           </div>
 
           <div className="cookbook_item--actions">
-            {book.amazon ?
-              <Link
-                to={book.amazon}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="action--icon action--icon-amazon"
-              >
-                <i className="fab fa-amazon icon fa-sm fa-fw" />
-              </Link>
+            {book.amazon
+              ? (
+                <Link
+                  to={book.amazon}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="action--icon action--icon-amazon"
+                >
+                  <i className="fab fa-amazon icon fa-sm fa-fw" />
+                </Link>
+              )
               : null}
-            {book.blog ?
-              <Link
-                to={book.blog}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="action--icon"
-              >
-                <i className="fas fa-external-link-alt fa-sm fa-fw" />
-              </Link>
+            {book.blog
+              ? (
+                <Link
+                  to={book.blog}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="action--icon"
+                >
+                  <i className="fas fa-external-link-alt fa-sm fa-fw" />
+                </Link>
+              )
               : null}
           </div>
 
-          {canEdit ?
-            <div>
-              <Button
-                bsStyle="info"
-                onClick={() => this.editCookbook(book)}
-                className="button--action"
-              >
-                <img src="edit.svg" alt="Edit" className="button--action--icon" />
-              </Button>
-              {!book.displayDate ?
+          {canEdit
+            ? (
+              <div>
                 <Button
-                  bsStyle="danger"
-                  onClick={() => this.deleteCookbook(book)}
+                  bsStyle="info"
+                  onClick={() => this.editCookbook(book)}
                   className="button--action"
                 >
-                  <img src="trash.svg" alt="Delete" className="button--action--icon" />
-                </Button> : null}
-            </div>
+                  <img src="edit.svg" alt="Edit" className="button--action--icon" />
+                </Button>
+                {!book.displayDate
+                  ? (
+                    <Button
+                      bsStyle="danger"
+                      onClick={() => this.deleteCookbook(book)}
+                      className="button--action"
+                    >
+                      <img src="trash.svg" alt="Delete" className="button--action--icon" />
+                    </Button>
+                  ) : null}
+              </div>
+            )
             : null}
 
         </article>
@@ -131,33 +143,37 @@ class CookbookList extends React.Component {
     }
 
     return (
-      <div >
-        {this.state.isLoading &&
-          <Spinner />
+      <div>
+        {isLoading
+          && <Spinner />
         }
 
-        {this.state.canEdit &&
-          <div className="button_add">
-            <Button
-              bsStyle="primary"
-              onClick={() => this.addCookbook()}
-            >
-              Add Cookbook
-            </Button>
-          </div>
+        {canEdit
+          && (
+            <div className="button_add">
+              <Button
+                bsStyle="primary"
+                onClick={() => this.addCookbook()}
+              >
+                Add Cookbook
+              </Button>
+            </div>
+          )
         }
 
         <section className="flex flex--stretch">
           {cookbookTiles}
         </section>
 
-        {this.state.canEdit &&
+        {canEdit
           /* Add Cookbook Modal */
-          <AddCookbook
-            book={this.state.currentBook}
-            showModal={this.state.showModal}
-            callback={this.refreshCookbookList}
-          />
+          && (
+            <AddCookbook
+              book={currentBook}
+              showModal={showModal}
+              callback={this.refreshCookbookList}
+            />
+          )
         }
       </div>
     );

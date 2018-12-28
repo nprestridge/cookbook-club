@@ -1,7 +1,7 @@
 /**
  * Api.js - Handles api calls and responses
  */
-import Config from './../Config';
+import Config from '../Config';
 
 const config = Config.load();
 const PROXY = config.api.endpoint;
@@ -144,5 +144,8 @@ function getCookbookRecipes(author, title, cb) {
     .then(cb);
 }
 
-const Api = { getCookbooks, updateCookbook, deleteCookbook, getCookbookRecipes };
+const Api = {
+  getCookbooks, updateCookbook, deleteCookbook, getCookbookRecipes,
+};
+
 export default Api;
