@@ -1,5 +1,5 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import Helmet, { HelmetProvider } from 'react-helmet-async';
 import PropTypes from 'prop-types';
 import Api from './../controller/Api';
 import Spinner from './Spinner';
@@ -54,11 +54,13 @@ class CookbookRecipes extends React.Component {
 
     return (
       <div>
-        <Helmet>
-          <title>{title}</title>
-          <meta property="og:title" content={title} />
-          <meta property="og:description" content={description} />
-        </Helmet>
+        <HelmetProvider>
+          <Helmet>
+            <title>{title}</title>
+            <meta property="og:title" content={title} />
+            <meta property="og:description" content={description} />
+          </Helmet>
+        </HelmetProvider>
         {this.state.isLoading ?
           <Spinner />
           :
