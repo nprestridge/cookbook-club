@@ -34,7 +34,7 @@ class CookbookRecipes extends React.Component {
     } = this.state;
 
     const title = `Cookbook Club | ${book}`;
-    const description = `Cookbook Club - ${book} by ${author}`;
+    const description = `${book} by ${author}`;
 
     let recipeRows = [];
 
