@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { Button } from 'react-bootstrap';
+import { Button } from 'reactstrap';
 import React from 'react';
 
 import Spinner from './Spinner';

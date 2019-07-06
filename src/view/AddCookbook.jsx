@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal } from 'reactstrap';
 
 import Api from '../controller/Api';
 

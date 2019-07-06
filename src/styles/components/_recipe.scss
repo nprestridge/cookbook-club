@@ -36,4 +36,25 @@
       font-size: 1.3em;
     }
   }
+
+  .camera--link {
+    margin-left: 0.5em;
+  }
+}
+
+.recipe_image {
+  .recipe_image--header {
+    h5 {
+      font-size: 1em;
+    }
+  }
+
+  .recipe_image--copyright {
+    font-size: 0.7em;
+    background-color: $white;
+  }
+
+  .recipe_image--link {
+    font-size: 0.8em;
+  }
 }
