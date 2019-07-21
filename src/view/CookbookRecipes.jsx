@@ -124,7 +124,7 @@ class CookbookRecipes extends React.Component {
 
         <Modal isOpen={modal} toggle={this.toggle} className="recipe_image">
           <ModalHeader toggle={this.toggle} className="recipe_image--header">{activeRecipe.name}</ModalHeader>
-          <ModalBody>
+          <ModalBody className="recipe_image--modal">
             <figure>
               <img
                 src={activeRecipe.image}
