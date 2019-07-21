@@ -140,7 +140,7 @@ class CookbookRecipes extends React.Component {
               <figcaption className="recipe_image--link">
                 {activeRecipe.link
                   ? <a href={activeRecipe.link} target="_blank" rel="noopener noreferrer">Recipe</a>
-                  : <span>{activeRecipe.name}</span>
+                  : null
                 }
               </figcaption>
             </figure>
