@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/nprestridge/cookbook-club
     parallelism: 1
     shell: /bin/bash --login
     environment:
@@ -17,9 +16,7 @@ jobs:
           command: echo ${CIRCLE_BRANCH}
       # Prepare for artifact and test results collection - https://circleci.com/docs/2.0/artifacts/
       - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
-      - run:
-          working_directory: ~/nprestridge/cookbook-club
-          command: nvm install 8.9.3 && nvm alias default 8.9.3
+      - run: nvm install 8.10 && nvm alias default 8.10
       # Restore local dependencies from cache
       - restore_cache:
           keys:
@@ -28,7 +25,6 @@ jobs:
           - v1-dep-
       - run: /bin/bash .circleci/set-configs.sh
       - run: if [ -z "${NODE_ENV:-}" ]; then export NODE_ENV=test; fi
-      - run: export PATH="~/nprestridge/cookbook-club/node_modules/.bin:$PATH"
       - run: npm install
        # Cache local dependencies if they don't exist
       - save_cache:
@@ -50,7 +46,6 @@ jobs:
   deploy:
       docker:
         - image: circleci/python:3.7-stretch
-      working_directory: ~/nprestridge/cookbook-club
       steps:
         - attach_workspace:
             at: ./
