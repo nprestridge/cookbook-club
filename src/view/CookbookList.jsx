@@ -64,37 +64,37 @@ class CookbookList extends React.Component {
 
     if (cookbooks) {
       cookbookTiles = cookbooks.map(book => (
-        <article className="flex-item cookbook_item" key={book.title}>
+        <article className="flex-item cookbook-item" key={book.title}>
           <Link to={`/recipes/${encodeURIComponent(book.author)}/${encodeURIComponent(book.title)}`}>
             {book.thumbnail
-              ? <img className="cookbook_item--image" src={book.thumbnail} alt={book.title} />
+              ? <img className="cookbook-item__image" src={book.thumbnail} alt={book.title} />
               : (
                 <img
-                  className="cookbook_item--image"
+                  className="cookbook-item__image"
                   src="/images/default_book.jpg"
                   alt="{book.title}"
                 />
               )
             }
           </Link>
-          <div className="cookbook_item--title">
+          <div className="cookbook-item__title">
             <Link to={`/recipes/${encodeURIComponent(book.author)}/${encodeURIComponent(book.title)}`}>{book.title}</Link>
           </div>
-          <div className="cookbook_item--author">
+          <div className="cookbook-item__author">
             {book.author}
           </div>
-          <div className="cookbook_item--date">
+          <div className="cookbook-item__date">
             {book.displayDate}
           </div>
 
-          <div className="cookbook_item--actions">
+          <div className="cookbook-item__actions">
             {book.amazon
               ? (
                 <Link
                   to={book.amazon}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="action--icon action--icon-amazon"
+                  className="action__icon action__icon--amazon"
                 >
                   <i className="fab fa-amazon icon fa-sm fa-fw" />
                 </Link>
@@ -106,7 +106,7 @@ class CookbookList extends React.Component {
                   to={book.blog}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="action--icon"
+                  className="action__icon"
                 >
                   <i className="fas fa-external-link-alt fa-sm fa-fw" />
                 </Link>
@@ -120,18 +120,18 @@ class CookbookList extends React.Component {
                 <Button
                   bsStyle="info"
                   onClick={() => this.editCookbook(book)}
-                  className="button--action"
+                  className="action-button"
                 >
-                  <img src="edit.svg" alt="Edit" className="button--action--icon" />
+                  <img src="edit.svg" alt="Edit" className="action-button__icon" />
                 </Button>
                 {!book.displayDate
                   ? (
                     <Button
                       bsStyle="danger"
                       onClick={() => this.deleteCookbook(book)}
-                      className="button--action"
+                      className="action-button"
                     >
-                      <img src="trash.svg" alt="Delete" className="button--action--icon" />
+                      <img src="trash.svg" alt="Delete" className="action-button__icon" />
                     </Button>
                   ) : null}
               </div>
@@ -150,7 +150,7 @@ class CookbookList extends React.Component {
 
         {canEdit
           && (
-            <div className="button_add">
+            <div className="add-button">
               <Button
                 bsStyle="primary"
                 onClick={() => this.addCookbook()}

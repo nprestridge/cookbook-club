@@ -143,7 +143,7 @@ class AddCookbook extends React.Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form id="add-cookbook" className="cookbook_form" onSubmit={this.handleSubmit}>
+          <form id="add-cookbook" className="cookbook-form" onSubmit={this.handleSubmit}>
             {this.renderError()}
             <div>
               Cookbook Title:

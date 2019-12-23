@@ -1,5 +1,5 @@
 // Recipe List Styles
-.recipe_list--heading {
+.cookbook-header {
   font-size: 2em;
   color: $lime-green;
 
@@ -8,7 +8,7 @@
   }
 }
 
-.recipe_list {
+.recipe-list {
   table,
   th,
   td {
@@ -27,7 +27,7 @@
     }
   }
 
-  .recipe_list--title {
+  .recipe-list__header {
     font-size: 1.2em;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -37,28 +37,28 @@
     }
   }
 
-  .camera--link {
+  .recipe-list__camera-icon {
     margin-left: 0.5em;
   }
 }
 
-.recipe_image {
-  .recipe_image--header {
+.recipe-image {
+  .recipe-image__header {
     h5 {
       font-size: 1em;
     }
   }
 
-  .recipe_image--modal {
+  .recipe-image__modal {
     padding: 0;
   }
 
-  .recipe_image--copyright {
+  .recipe-image__copyright {
     font-size: 0.7em;
     background-color: $white;
   }
 
-  .recipe_image--link {
+  .recipe-image__link {
     font-size: 0.8em;
   }
 }

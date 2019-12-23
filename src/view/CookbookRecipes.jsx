@@ -67,7 +67,7 @@ class CookbookRecipes extends React.Component {
             {recipe.image
               ? (
                 <span
-                  className="camera--link"
+                  className="recipe-list__camera-icon"
                   onClick={() => this.toggle(recipe)}
                   onKeyPress={() => this.toggle(recipe)}
                   role="button"
@@ -97,17 +97,17 @@ class CookbookRecipes extends React.Component {
           ? <Spinner />
           : (
             <section>
-              <h1 className="recipe_list--heading">
+              <h1 className="cookbook-header">
                 <em>{book}</em>
                 &nbsp;by&nbsp;
                 {author}
               </h1>
-              <div className="recipe_list">
+              <div className="recipe-list">
                 <table>
                   <thead>
                     <tr>
-                      <th className="recipe_list--title">Recipe</th>
-                      <th className="recipe_list--title">Cook</th>
+                      <th className="recipe-list__header">Recipe</th>
+                      <th className="recipe-list__header">Cook</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -122,22 +122,22 @@ class CookbookRecipes extends React.Component {
           )
         }
 
-        <Modal isOpen={modal} toggle={this.toggle} className="recipe_image">
-          <ModalHeader toggle={this.toggle} className="recipe_image--header">{activeRecipe.name}</ModalHeader>
-          <ModalBody className="recipe_image--modal">
+        <Modal isOpen={modal} toggle={this.toggle} className="recipe-image">
+          <ModalHeader toggle={this.toggle} className="recipe-image__header">{activeRecipe.name}</ModalHeader>
+          <ModalBody className="recipe-image__modal">
             <figure>
               <img
                 src={activeRecipe.image}
                 alt={activeRecipe.name}
               />
-              <footer className="recipe_image--copyright">
+              <footer className="recipe-image__copyright">
                 <small>
                   &copy;&nbsp;
                   {year}
                   &nbsp;Nancy&apos;s Hearth
                 </small>
               </footer>
-              <figcaption className="recipe_image--link">
+              <figcaption className="recipe-image__link">
                 {activeRecipe.link
                   ? <a href={activeRecipe.link} target="_blank" rel="noopener noreferrer">Recipe</a>
                   : null

@@ -1,5 +1,5 @@
 // Cookbooks List Styles
-.cookbook_item {
+.cookbook-item {
   margin-bottom: 0.2em;
   padding-top: 1em;
   text-align: center;
@@ -7,7 +7,7 @@
   border-radius: 10px;
 }
 
-.cookbook_item--image {
+.cookbook-item__image {
   width: 85%;
   margin-bottom: 1em;
 
@@ -21,7 +21,7 @@
   }
 }
 
-.cookbook_item--title {
+.cookbook-item__title {
   margin: 0 0.2em;
   font-size: 1.6em;
   font-weight: $bold;
@@ -31,27 +31,27 @@
   }
 }
 
-.cookbook_item--author {
+.cookbook-item__author {
   font-size: 1.3em;
   font-weight: $bold;
   font-variant: small-caps;
 }
 
-.cookbook_item--date {
+.cookbook-item__date {
   font-size: 1em;
 }
 
-.cookbook_item--actions {
+.cookbook-item__actions {
   padding: 0.3em 0 0.5em;
   font-size: 2em;
 
-  .action--icon {
+  .action__icon {
     margin-right: 0.3em;
     margin-left: 0.3em;
   }
 
   /* Hack the FA amazon icon to match same height as other actions */
-  .action--icon-amazon {
+  .action__icon--amazon {
     position: relative;
     top: 5px;
     font-size: 34px;
@@ -59,19 +59,19 @@
 }
 
 // Cookbook Management
-.cookbook_form {
+.cookbook-form {
   padding: 20px;
 }
 
-.button_add {
+.add-button {
   padding-top: 5px;
 }
 
-.button--action {
+.action-button {
   margin: 0.5em 0.2em 0;
 }
 
-.button--action-icon {
+.action-button__icon {
   width: auto;
   height: 1.5em;
 }

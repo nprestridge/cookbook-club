@@ -20,7 +20,7 @@ const Layout = (props) => {
         {main}
       </main>
 
-      <footer className="footer footer--text">
+      <footer className="page-footer">
         &copy;&nbsp;
         {year}
         &nbsp;Nancy&apos;s Hearth.  All rights reserved.
