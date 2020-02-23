@@ -2,6 +2,7 @@
  * Api.js - Handles api calls and responses
  */
 import Config from '../Config';
+import Url from '../util/Url';
 
 const config = Config.load();
 const PROXY = config.api.endpoint;
@@ -133,7 +134,9 @@ function deleteCookbook(title, author, cb) {
  * @return {object}
  */
 function getCookbookRecipes(author, title, cb) {
-  return fetch(`${PROXY}recipes/${author}/${title}`, {
+  const encodedAuthor = Url.format(author);
+  const encodedTitle = Url.format(title);
+  return fetch(`${PROXY}recipes/${encodedAuthor}/${encodedTitle}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
