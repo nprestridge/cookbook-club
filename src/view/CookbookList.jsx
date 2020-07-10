@@ -96,8 +96,9 @@ class CookbookList extends React.Component {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="action__icon action__icon--amazon"
+                  aria-label="Go to Amazon"
                 >
-                  <i className="fab fa-amazon icon fa-sm fa-fw" />
+                  <i className="fab fa-amazon icon fa-sm fa-fw" aria-hidden="true" />
                 </Link>
               )
               : null}
@@ -108,8 +109,9 @@ class CookbookList extends React.Component {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="action__icon"
+                  aria-label="Go to blog"
                 >
-                  <i className="fas fa-external-link-alt fa-sm fa-fw" />
+                  <i className="fas fa-external-link-alt fa-sm fa-fw" aria-hidden="true" />
                 </Link>
               )
               : null}
