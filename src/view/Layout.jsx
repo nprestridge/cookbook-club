@@ -12,7 +12,7 @@ const Layout = (props) => {
     <div>
       <header>
         <a href="/">
-          <img src="/images/logo_banner.png" alt="Cookbook Club" height="100" width="300" />
+          <img src="/images/logo_banner_w300.png" alt="Cookbook Club" height="100" width="300" />
         </a>
       </header>
 

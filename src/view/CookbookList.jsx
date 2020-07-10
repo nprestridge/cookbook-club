@@ -72,7 +72,7 @@ class CookbookList extends React.Component {
               : (
                 <img
                   className="cookbook-item__image"
-                  src="/images/default_book.jpg"
+                  src="/images/default_book_w400.jpg"
                   alt="{book.title}"
                 />
               )
