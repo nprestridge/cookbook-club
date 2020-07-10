@@ -68,7 +68,7 @@ class CookbookList extends React.Component {
         <article className="flex-item cookbook-item" key={book.title}>
           <Link to={`/recipes/${Url.format(book.author, true)}/${Url.format(book.title, true)}`}>
             {book.thumbnail
-              ? <img className="cookbook-item__image" src={book.thumbnail} alt={book.title} />
+              ? <img className="cookbook-item__image lazyload" data-src={book.thumbnail} alt={book.title} />
               : (
                 <img
                   className="cookbook-item__image"
