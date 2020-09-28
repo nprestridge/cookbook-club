@@ -147,8 +147,26 @@ function getCookbookRecipes(author, title, cb) {
     .then(cb);
 }
 
+/**
+ * Get list of all recipes
+ *
+ * @param  {Function} cb     Callback
+ * @return {object}
+ */
+function getRecipes(cb) {
+  return fetch(`${PROXY}recipes`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': API_KEY,
+    },
+  }).then(checkStatus)
+    .then(parseJSON)
+    .then(cb);
+}
+
 const Api = {
-  getCookbooks, updateCookbook, deleteCookbook, getCookbookRecipes,
+  getCookbooks, updateCookbook, deleteCookbook, getCookbookRecipes, getRecipes,
 };
 
 export default Api;
