@@ -73,7 +73,7 @@ class CookbookRecipes extends React.Component {
                   role="button"
                   tabIndex="0"
                 >
-                  <i className="fa fa-camera fa-sm" />
+                  <i className="fas fa-camera fa-sm" />
                 </span>
               )
               : null

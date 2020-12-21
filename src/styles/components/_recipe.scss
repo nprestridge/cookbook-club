@@ -1,44 +1,67 @@
 // Recipe List Styles
 .cookbook-header {
   font-size: 2em;
-  color: $lime-green;
+  color: $black;
 
   @media (min-width: $mq-xsmall) {
     font-size: 2.5em;
   }
 }
 
-.recipe-list {
-  table,
-  th,
-  td {
-    padding: 0.3em 1em;
-  }
+.recipe-container {
+  margin: 2em auto;
 
-  tbody tr:nth-child(even) {
-    background-color: $light-gray;
+  div {
+    box-sizing: border-box;
   }
+}
 
-  @media (min-width: $mq-xsmall) {
-    td {
-      padding-top: 0.5em;
-      padding-bottom: 0.5em;
-      font-size: 1.1em;
-    }
+.recipe-list__table {
+  display: flex;
+  flex-flow: row wrap;
+  border-left: solid 1px $light-gray;
+
+  &.recipe-list__row:nth-child(even) {
+    background: $light-gray;
+  }
+}
+
+.recipe-list__header {
+  font-size: 1.2em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: $pale-yellow;
+}
+
+.recipe-list__item {
+  flex: 1 1 25%;
+  padding: 0.5em 0.5em;
+  text-align: center;
+  border-right: solid 1px $light-gray;
+  border-bottom: solid 1px $light-gray;
+}
+
+.recipe-list__item--recipe {
+  flex-basis: 50%;
+}
+
+.recipe-list__camera-icon {
+  margin-left: 0.5em;
+}
+
+@media all and (max-width: $mq-xsmall) {
+  .recipe-list__item {
+    flex: 1 1 100%;
+    hyphens: auto;
+    border-bottom: 0;
   }
 
   .recipe-list__header {
-    font-size: 1.2em;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 1em;
 
-    @media (min-width: $mq-xsmall) {
-      font-size: 1.3em;
+    .recipe-list__item {
+      border-bottom: solid 1px $light-gray;
     }
-  }
-
-  .recipe-list__camera-icon {
-    margin-left: 0.5em;
   }
 }
 

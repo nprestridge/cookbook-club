@@ -10,17 +10,22 @@ class Recipes extends React.Component {
 
     this.state = {
       isLoading: true,
+      allRecipes: [],
       recipes: [],
       modal: false,
       activeRecipe: {},
+      searchTerm: '',
     };
 
     this.toggle = this.toggle.bind(this);
+    this.search = this.search.bind(this);
+    this.clearSearch = this.clearSearch.bind(this);
   }
 
   componentDidMount() {
     Api.getRecipes((recipes) => {
       this.setState({
+        allRecipes: recipes,
         recipes,
         isLoading: false,
       });
@@ -34,9 +39,37 @@ class Recipes extends React.Component {
     }));
   }
 
+  search(event) {
+    const input = event.target.value;
+    const filter = input ? input.toLowerCase() : null;
+    const { allRecipes } = this.state;
+
+    let filteredRecipes;
+    if (filter) {
+      filteredRecipes = allRecipes.filter(recipe => (
+        recipe.name.toLowerCase().includes(filter)
+          || recipe.cookbook.toLowerCase().includes(filter)
+          || recipe.cook.toLowerCase().includes(filter)
+      ));
+    }
+
+    this.setState({
+      recipes: filteredRecipes || allRecipes,
+      searchTerm: input,
+    });
+  }
+
+  clearSearch() {
+    const { allRecipes } = this.state;
+    this.setState({
+      recipes: allRecipes,
+      searchTerm: '',
+    });
+  }
+
   render() {
     const {
-      recipes, isLoading, modal, activeRecipe,
+      recipes, isLoading, modal, activeRecipe, searchTerm,
     } = this.state;
 
     const d = new Date();
@@ -45,14 +78,12 @@ class Recipes extends React.Component {
     const title = 'Cookbook Club | Recipes';
     const description = 'Recipe Index';
 
-    let recipeRows = [];
+    let recipeItems = [];
 
     if (recipes) {
-      recipeRows = recipes.map(recipe => (
-        <tr
-          key={recipe.name}
-        >
-          <td>
+      recipeItems = recipes.map(recipe => (
+        <div className="recipe-list__table recipe-list__row" role="row" key={recipe.name}>
+          <div className="recipe-list__item recipe-list__item--recipe" role="cell">
             {recipe.link
               ? <a href={recipe.link} target="_blank" rel="noopener noreferrer">{recipe.name}</a>
               : <span>{recipe.name}</span>
@@ -66,16 +97,17 @@ class Recipes extends React.Component {
                   onKeyPress={() => this.toggle(recipe)}
                   role="button"
                   tabIndex="0"
+                  aria-label="View Recipe Photo"
                 >
-                  <i className="fa fa-camera fa-sm" />
+                  <i className="fas fa-camera fa-sm" />
                 </span>
               )
               : null
             }
-          </td>
-          <td>{recipe.cookbook}</td>
-          <td>{recipe.cook}</td>
-        </tr>
+          </div>
+          <div className="recipe-list__item" role="cell"><em>{recipe.cookbook}</em></div>
+          <div className="recipe-list__item" role="cell">{recipe.cook}</div>
+        </div>
       ));
     }
 
@@ -95,19 +127,43 @@ class Recipes extends React.Component {
               <h1 className="cookbook-header">
                 <em>{description}</em>
               </h1>
-              <div className="recipe-list">
-                <table>
-                  <thead>
-                    <tr>
-                      <th className="recipe-list__header">Recipe</th>
-                      <th className="recipe-list__header">Cookbook</th>
-                      <th className="recipe-list__header">Cook</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {recipeRows}
-                  </tbody>
-                </table>
+              <div className="recipe-container">
+                <div role="table" aria-label="Recipe Index">
+
+                  <div className="input-group mb-2">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text">
+                        <i className="fas fa-search" aria-hidden="true" />
+                      </span>
+                    </div>
+                    <input
+                      className="form-control"
+                      id="recipeSearch"
+                      type="text"
+                      value={searchTerm}
+                      onChange={this.search}
+                      placeholder="Search recipes..."
+                      aria-label="Search Recipes"
+                    />
+                    <span
+                      className="input-group-text bg-transparent"
+                      onClick={this.clearSearch}
+                      onKeyDown={this.clearSearch}
+                      role="button"
+                      aria-label="Clear search"
+                      tabIndex="0"
+                    >
+                      <i className="fas fa-times" aria-hidden="true" />
+                    </span>
+                  </div>
+
+                  <div className="recipe-list__table recipe-list__header" role="row">
+                    <div className="recipe-list__item recipe-list__item--recipe" role="columnheader">Recipe</div>
+                    <div className="recipe-list__item" role="columnheader">Cookbook</div>
+                    <div className="recipe-list__item" role="columnheader">Cook</div>
+                  </div>
+                  {recipeItems}
+                </div>
               </div>
             </section>
           )
