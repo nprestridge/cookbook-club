@@ -55,10 +55,8 @@ class CookbookRecipes extends React.Component {
 
     if (recipes) {
       recipeRows = recipes.map(recipe => (
-        <tr
-          key={recipe.name}
-        >
-          <td>
+        <div className="recipe-list__table recipe-list__row" role="row" key={recipe.name}>
+          <div className="recipe-list__item recipe-list__item--recipe" role="cell">
             {recipe.link
               ? <a href={recipe.link} target="_blank" rel="noopener noreferrer">{recipe.name}</a>
               : <span>{recipe.name}</span>
@@ -72,15 +70,16 @@ class CookbookRecipes extends React.Component {
                   onKeyPress={() => this.toggle(recipe)}
                   role="button"
                   tabIndex="0"
+                  aria-label="View Recipe Photo"
                 >
                   <i className="fas fa-camera fa-sm" />
                 </span>
               )
               : null
             }
-          </td>
-          <td>{recipe.cook}</td>
-        </tr>
+          </div>
+          <div className="recipe-list__item" role="cell">{recipe.cook}</div>
+        </div>
       ));
     }
 
@@ -102,21 +101,17 @@ class CookbookRecipes extends React.Component {
                 &nbsp;by&nbsp;
                 {author}
               </h1>
-              <div className="recipe-list">
-                <table>
-                  <thead>
-                    <tr>
-                      <th className="recipe-list__header">Recipe</th>
-                      <th className="recipe-list__header">Cook</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {recipeRows.length > 0
-                      ? recipeRows
-                      : <tr><td colSpan="2">Get hungry!</td></tr>
-                    }
-                  </tbody>
-                </table>
+              <div className="recipe-container">
+                <div role="table" aria-label="Recipe Index">
+                  <div className="recipe-list__table recipe-list__header" role="row">
+                    <div className="recipe-list__item recipe-list__item--recipe" role="columnheader">Recipe</div>
+                    <div className="recipe-list__item" role="columnheader">Cook</div>
+                  </div>
+                  {recipeRows.length > 0
+                    ? recipeRows
+                    : <div className="recipe-list__item" role="columnheader">Get hungry!</div>
+                  }
+                </div>
               </div>
             </section>
           )

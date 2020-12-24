@@ -125,7 +125,7 @@ class Recipes extends React.Component {
           : (
             <section>
               <h1 className="cookbook-header">
-                <em>{description}</em>
+                {description}
               </h1>
               <div className="recipe-container">
                 <div role="table" aria-label="Recipe Index">
