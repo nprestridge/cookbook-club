@@ -1,8 +1,10 @@
+import { Link } from 'react-router';
 import React from 'react';
 import Helmet, { HelmetProvider } from 'react-helmet-async';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import Api from '../controller/Api';
 import Spinner from './Spinner';
+import Url from '../util/Url';
 
 class Recipes extends React.Component {
   constructor(props) {
@@ -105,7 +107,9 @@ class Recipes extends React.Component {
               : null
             }
           </div>
-          <div className="recipe-list__item" role="cell"><em>{recipe.cookbook}</em></div>
+          <div className="recipe-list__item" role="cell">
+            <Link to={`/recipes/${Url.format(recipe.author, true)}/${Url.format(recipe.cookbook, true)}`}>{recipe.cookbook}</Link>
+          </div>
           <div className="recipe-list__item" role="cell">{recipe.cook}</div>
         </div>
       ));
