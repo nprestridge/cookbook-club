@@ -72,7 +72,7 @@ class CookbookRecipes extends React.Component {
                   tabIndex="0"
                   aria-label="View Recipe Photo"
                 >
-                  <i className="fas fa-camera fa-sm" />
+                  <i className="fas fa-camera fa-lg" />
                 </span>
               )
               : null
