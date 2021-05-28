@@ -15,7 +15,7 @@ jobs:
           command: echo ${CIRCLE_BRANCH}
       # Prepare for artifact and test results collection - https://circleci.com/docs/2.0/artifacts/
       - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
-      - run: nvm install 8.10 && nvm alias default 8.10
+      - run: nvm install 14.17 && nvm alias default 14.17
       # Restore local dependencies from cache
       - restore_cache:
           keys:

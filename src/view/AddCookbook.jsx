@@ -121,7 +121,7 @@ class AddCookbook extends React.Component {
 
     return (
       <div style={{ color: 'red' }}>
-      Please fix the following errors:
+        Please fix the following errors:
         {errorList}
       </div>
     );
