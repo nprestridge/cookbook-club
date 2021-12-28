@@ -1,14 +1,14 @@
 // Variables
-@import 'variables/_media-queries.scss';
-@import 'variables/_colors.scss';
-@import 'variables/_fonts.scss';
+@import "variables/media-queries";
+@import "variables/colors";
+@import "variables/fonts";
 
 // Shared
-@import 'base/_reset.scss';
-@import 'base/_typography.scss';
-@import 'base/_grid.scss';
-@import 'base/_layout.scss';
+@import "base/reset";
+@import "base/typography";
+@import "base/grid";
+@import "base/layout";
 
 // Pages
-@import 'components/_cookbook.scss';
-@import 'components/_recipe.scss';
+@import "components/cookbook";
+@import "components/recipe";

@@ -46,3 +46,4 @@ src/config/production.json
 
 # Compiled CSS
 src/**/*.css
+src/**/*.css.map
