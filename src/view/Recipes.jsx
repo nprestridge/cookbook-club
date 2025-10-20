@@ -4,7 +4,12 @@ import Helmet, { HelmetProvider } from 'react-helmet-async';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import Api from '../controller/Api';
 import Spinner from './Spinner';
-import Url from '../util/Url';
+
+const formatSlug = text => text
+  .toLowerCase()
+  .replace(/[^a-z0-9\s]/g, '') // Remove all non-alphanumeric chars except spaces
+  .replace(/\s+/g, '-') // Replace one or more spaces with a single dash
+  .replace(/^-+|-+$/g, ''); // Remove leading/trailing dashes
 
 class Recipes extends React.Component {
   constructor(props) {
@@ -108,7 +113,7 @@ class Recipes extends React.Component {
             }
           </div>
           <div className="recipe-list__item" role="cell">
-            <Link to={`/recipes/${Url.format(recipe.author, true)}/${Url.format(recipe.cookbook, true)}`}>{recipe.cookbook}</Link>
+            <Link to={`/recipes/${formatSlug(recipe.cookbook)}`}>{recipe.cookbook}</Link>
           </div>
           <div className="recipe-list__item" role="cell">{recipe.cook}</div>
         </div>

@@ -20,8 +20,9 @@ class CookbookRecipes extends React.Component {
   }
 
   componentDidMount() {
-    const { params } = this.props;
-    const { book, author } = params;
+    const { params, author: propAuthor, title: propTitle } = this.props;
+    const author = propAuthor || (params && params.author);
+    const book = propTitle || (params && params.book);
 
     Api.getCookbookRecipes(encodeURIComponent(author), encodeURIComponent(book), (recipes) => {
       this.setState({
@@ -148,7 +149,18 @@ class CookbookRecipes extends React.Component {
 }
 
 CookbookRecipes.propTypes = {
-  params: PropTypes.objectOf(PropTypes.string).isRequired,
+  params: PropTypes.shape({
+    author: PropTypes.string,
+    book: PropTypes.string,
+  }),
+  author: PropTypes.string,
+  title: PropTypes.string,
+};
+
+CookbookRecipes.defaultProps = {
+  params: null,
+  author: null,
+  title: null,
 };
 
 export default CookbookRecipes;

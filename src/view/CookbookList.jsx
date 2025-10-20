@@ -5,7 +5,7 @@ import React from 'react';
 import Spinner from './Spinner';
 import AddCookbook from './AddCookbook';
 import Api from '../controller/Api';
-import Url from '../util/Url';
+import CookbookStore from '../controller/CookbookStore';
 
 class CookbookList extends React.Component {
   constructor(props) {
@@ -27,6 +27,7 @@ class CookbookList extends React.Component {
 
   refreshCookbookList() {
     Api.getCookbooks((books) => {
+      CookbookStore.setCookbooks(books);
       this.setState({
         cookbooks: books,
         showModal: false,
@@ -66,7 +67,7 @@ class CookbookList extends React.Component {
     if (cookbooks) {
       cookbookTiles = cookbooks.map(book => (
         <article className="flex-item cookbook-item" key={book.title}>
-          <Link to={`/recipes/${Url.format(book.author, true)}/${Url.format(book.title, true)}`}>
+          <Link to={`/recipes/${book.slug}`}>
             {book.thumbnail
               ? <img className="cookbook-item__image lazyload" data-src={book.thumbnail} alt={book.title} />
               : (
@@ -79,7 +80,7 @@ class CookbookList extends React.Component {
             }
           </Link>
           <div className="cookbook-item__title">
-            <Link to={`/recipes/${Url.format(book.author, true)}/${Url.format(book.title, true)}`}>{book.title}</Link>
+            <Link to={`/recipes/${book.slug}`}>{book.title}</Link>
           </div>
           <div className="cookbook-item__author">
             {book.author}
