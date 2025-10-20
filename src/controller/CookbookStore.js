@@ -6,7 +6,7 @@ const CookbookStore = {
   },
 
   getCookbookBySlug(slug) {
-    return cookbooks.find(book => book.slug === slug);
+    return cookbooks.find((book) => book.slug === slug);
   },
 };
 

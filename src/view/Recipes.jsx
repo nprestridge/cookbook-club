@@ -1,15 +1,14 @@
-import { Link } from 'react-router';
 import React from 'react';
-import Helmet, { HelmetProvider } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import Api from '../controller/Api';
 import Spinner from './Spinner';
 
-const formatSlug = text => text
+const formatSlug = (text) => text
   .toLowerCase()
-  .replace(/[^a-z0-9\s]/g, '') // Remove all non-alphanumeric chars except spaces
-  .replace(/\s+/g, '-') // Replace one or more spaces with a single dash
-  .replace(/^-+|-+$/g, ''); // Remove leading/trailing dashes
+  .replace(/ /g, '-')
+  .replace(/[^\w-]+/g, ''); // Remove leading/trailing dashes
 
 class Recipes extends React.Component {
   constructor(props) {
@@ -40,7 +39,7 @@ class Recipes extends React.Component {
   }
 
   toggle(activeRecipe) {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       modal: !prevState.modal,
       activeRecipe,
     }));
@@ -53,7 +52,7 @@ class Recipes extends React.Component {
 
     let filteredRecipes;
     if (filter) {
-      filteredRecipes = allRecipes.filter(recipe => (
+      filteredRecipes = allRecipes.filter((recipe) => (
         recipe.name.toLowerCase().includes(filter)
           || recipe.cookbook.toLowerCase().includes(filter)
           || recipe.cook.toLowerCase().includes(filter)
@@ -88,13 +87,12 @@ class Recipes extends React.Component {
     let recipeItems = [];
 
     if (recipes) {
-      recipeItems = recipes.map(recipe => (
+      recipeItems = recipes.map((recipe) => (
         <div className="recipe-list__table recipe-list__row" role="row" key={recipe.name}>
           <div className="recipe-list__item recipe-list__item--recipe" role="cell">
             {recipe.link
               ? <a href={recipe.link} target="_blank" rel="noopener noreferrer">{recipe.name}</a>
-              : <span>{recipe.name}</span>
-            }
+              : <span>{recipe.name}</span>}
             <span>{recipe.page ? ` (p. ${recipe.page})` : ''}</span>
             {recipe.image
               ? (
@@ -109,8 +107,7 @@ class Recipes extends React.Component {
                   <i className="fas fa-camera fa-lg" />
                 </span>
               )
-              : null
-            }
+              : null}
           </div>
           <div className="recipe-list__item" role="cell">
             <Link to={`/recipes/${formatSlug(recipe.cookbook)}`}>{recipe.cookbook}</Link>
@@ -175,8 +172,7 @@ class Recipes extends React.Component {
                 </div>
               </div>
             </section>
-          )
-        }
+          )}
 
         <Modal isOpen={modal} toggle={this.toggle} className="recipe-image">
           <ModalHeader toggle={this.toggle} className="recipe-image__header">{activeRecipe.name}</ModalHeader>
@@ -196,8 +192,7 @@ class Recipes extends React.Component {
               <figcaption className="recipe-image__link">
                 {activeRecipe.link
                   ? <a href={activeRecipe.link} target="_blank" rel="noopener noreferrer">Recipe</a>
-                  : null
-                }
+                  : null}
               </figcaption>
             </figure>
 
