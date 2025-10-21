@@ -1,5 +1,5 @@
 import React from 'react';
-import Helmet, { HelmetProvider } from 'react-helmet-async';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import PropTypes from 'prop-types';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import Api from '../controller/Api';
@@ -35,7 +35,7 @@ class CookbookRecipes extends React.Component {
   }
 
   toggle(activeRecipe) {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       modal: !prevState.modal,
       activeRecipe,
     }));
@@ -55,13 +55,12 @@ class CookbookRecipes extends React.Component {
     let recipeRows = [];
 
     if (recipes) {
-      recipeRows = recipes.map(recipe => (
+      recipeRows = recipes.map((recipe) => (
         <div className="recipe-list__table recipe-list__row" role="row" key={recipe.name}>
           <div className="recipe-list__item recipe-list__item--recipe" role="cell">
             {recipe.link
               ? <a href={recipe.link} target="_blank" rel="noopener noreferrer">{recipe.name}</a>
-              : <span>{recipe.name}</span>
-            }
+              : <span>{recipe.name}</span>}
             <span>{recipe.page ? ` (p. ${recipe.page})` : ''}</span>
             {recipe.image
               ? (
@@ -76,8 +75,7 @@ class CookbookRecipes extends React.Component {
                   <i className="fas fa-camera fa-lg" />
                 </span>
               )
-              : null
-            }
+              : null}
           </div>
           <div className="recipe-list__item" role="cell">{recipe.cook}</div>
         </div>
@@ -110,13 +108,11 @@ class CookbookRecipes extends React.Component {
                   </div>
                   {recipeRows.length > 0
                     ? recipeRows
-                    : <div className="recipe-list__item" role="columnheader">Get hungry!</div>
-                  }
+                    : <div className="recipe-list__item" role="columnheader">Get hungry!</div>}
                 </div>
               </div>
             </section>
-          )
-        }
+          )}
 
         <Modal isOpen={modal} toggle={this.toggle} className="recipe-image">
           <ModalHeader toggle={this.toggle} className="recipe-image__header">{activeRecipe.name}</ModalHeader>
@@ -136,8 +132,7 @@ class CookbookRecipes extends React.Component {
               <figcaption className="recipe-image__link">
                 {activeRecipe.link
                   ? <a href={activeRecipe.link} target="_blank" rel="noopener noreferrer">Recipe</a>
-                  : null
-                }
+                  : null}
               </figcaption>
             </figure>
 

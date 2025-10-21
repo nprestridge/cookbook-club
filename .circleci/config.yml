@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   build:
     parallelism: 1
@@ -7,7 +7,7 @@ jobs:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
     docker:
-      - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+      - image: cimg/node:22.0.0
     steps:
       - checkout
       - run:
@@ -15,27 +15,26 @@ jobs:
           command: echo ${CIRCLE_BRANCH}
       # Prepare for artifact and test results collection - https://circleci.com/docs/2.0/artifacts/
       - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
-      - run: nvm install 14.17 && nvm alias default 14.17
       # Restore local dependencies from cache
       - restore_cache:
           keys:
-          - v1-dep-{{ .Branch }}-
-          - v1-dep-master-
-          - v1-dep-
+            - v1-dep-{{ .Branch }}-
+            - v1-dep-master-
+            - v1-dep-
       - run: /bin/bash .circleci/set-configs.sh
       - run: if [ -z "${NODE_ENV:-}" ]; then export NODE_ENV=test; fi
       - run: npm install
-       # Cache local dependencies if they don't exist
+        # Cache local dependencies if they don't exist
       - save_cache:
           key: v1-dep-{{ .Branch }}-{{ epoch }}
           paths:
-          - ./node_modules
+            - ./node_modules
       - run: npm run build
       - run: npm run test
       - persist_to_workspace:
-            root: ./
-            paths:
-              - build
+          root: ./
+          paths:
+            - build
       - store_test_results:
           path: /tmp/circleci-test-results
       - store_artifacts:
@@ -43,17 +42,17 @@ jobs:
       - store_artifacts:
           path: /tmp/circleci-test-results
   deploy:
-      docker:
-        - image: circleci/python:3.7-stretch
-      steps:
-        - attach_workspace:
-            at: ./
-        - run:
-            name: Install awscli
-            command: sudo pip install awscli
-        - run:
-            name: Deploy to S3
-            command: aws s3 sync build s3://cookbook-club-site/ --delete --cache-control max-age=31536000,public
+    docker:
+      - image: cimg/python:3.12
+    steps:
+      - attach_workspace:
+          at: ./
+      - run:
+          name: Install awscli
+          command: sudo pip install awscli
+      - run:
+          name: Deploy to S3
+          command: aws s3 sync build s3://cookbook-club-site/ --delete --cache-control max-age=31536000,public
 workflows:
   version: 2
   build-deploy:

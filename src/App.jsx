@@ -1,6 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Router, Route, browserHistory } from 'react-router';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useParams,
+} from 'react-router-dom';
 
 /** VIEWS */
 import Layout from './view/Layout';
@@ -11,60 +15,50 @@ import Spinner from './view/Spinner';
 import Api from './controller/Api';
 import CookbookStore from './controller/CookbookStore';
 
-class CookbookRecipesRoute extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: true,
-    };
-  }
+function CookbookRecipesRoute() {
+  const [isLoading, setIsLoading] = React.useState(true);
+  const { slug } = useParams();
 
-  componentDidMount() {
-    const { params } = this.props;
-    const book = CookbookStore.getCookbookBySlug(params.slug);
-
+  React.useEffect(() => {
+    const book = CookbookStore.getCookbookBySlug(slug);
     if (!book) {
       Api.getCookbooks((books) => {
         CookbookStore.setCookbooks(books);
-        this.setState({ isLoading: false });
+        setIsLoading(false);
       });
     } else {
-      this.setState({ isLoading: false });
+      setIsLoading(false);
     }
+  }, [slug]);
+
+  if (isLoading) {
+    return <Spinner />;
   }
 
-  render() {
-    const { params } = this.props;
-    const { isLoading } = this.state;
-
-    if (isLoading) {
-      return <Spinner />;
-    }
-
-    const book = CookbookStore.getCookbookBySlug(params.slug);
-    return book ? <CookbookRecipes author={book.author} title={book.title} /> : null;
-  }
+  const book = CookbookStore.getCookbookBySlug(slug);
+  return book ? <CookbookRecipes author={book.author} title={book.title} /> : null;
 }
 
-CookbookRecipesRoute.propTypes = {
-  params: PropTypes.shape({
-    slug: PropTypes.string.isRequired,
-  }).isRequired,
-};
+function AppRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<CookbookList />} />
+        <Route path="recipes">
+          <Route index element={<Recipes />} />
+          <Route path=":slug" element={<CookbookRecipesRoute />} />
+        </Route>
+      </Route>
+    </Routes>
+  );
+}
 
-const App = () => (
-  <Router history={browserHistory}>
-    <Route component={Layout}>
-      <Route path="/" components={{ main: CookbookList }} />
-      <Route
-        path="/recipes/:slug"
-        components={{
-          main: CookbookRecipesRoute,
-        }}
-      />
-      <Route path="/recipes" components={{ main: Recipes }} />
-    </Route>
-  </Router>
-);
+function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  );
+}
 
 export default App;
