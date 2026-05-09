@@ -3,14 +3,38 @@
     "plugins": [
         "react",
         "jsx-a11y",
-        "import"
+        "import",
+        "vitest"
     ],
     "env": {
-      "jest": true,
       "browser": true
+    },
+    "globals": {
+      "suite": "readonly",
+      "test": "readonly",
+      "describe": "readonly",
+      "it": "readonly",
+      "expect": "readonly",
+      "assert": "readonly",
+      "vitest": "readonly",
+      "vi": "readonly",
+      "beforeAll": "readonly",
+      "afterAll": "readonly",
+      "beforeEach": "readonly",
+      "afterEach": "readonly"
+    },
+    "parserOptions": {
+      "ecmaVersion": 2022,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
     },
     "rules": {
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "react/react-in-jsx-scope": "off",
+      "react/require-default-props": "off",
+      "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.jsx", "**/*.test.js", "**/setup.js"]}],
       "comma-dangle": ["error", "always-multiline"]
     }
 }
