@@ -15,7 +15,6 @@ React site to showcase cookbooks and recipes by the KoP Cookbook Club.
 #### Development
 
 - `npm run start` - Start the development server with hot module replacement
-- `npm run start:vite` - Start Vite dev server only (without CSS watching)
 
 #### Building
 

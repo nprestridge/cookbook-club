@@ -34,7 +34,6 @@
   "scripts": {
     "build:css": "sass src:src",
     "watch:css": "npm run build:css && sass --watch src:src",
-    "start:vite": "vite",
     "start": "npm-run-all -p watch:css start:vite",
     "build:js": "vite build",
     "build": "npm-run-all build:css build:js",
