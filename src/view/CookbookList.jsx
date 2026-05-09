@@ -1,40 +1,25 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import Spinner from './Spinner';
 import Api from '../controller/Api';
 import CookbookStore from '../controller/CookbookStore';
 
-class CookbookList extends React.Component {
-  constructor(props) {
-    super(props);
+const CookbookList = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [cookbooks, setCookbooks] = useState([]);
 
-    this.state = {
-      isLoading: true,
-      cookbooks: [],
-    };
-
-    this.refreshCookbookList = this.refreshCookbookList.bind(this);
-  }
-
-  componentDidMount() {
-    this.refreshCookbookList();
-  }
-
-  refreshCookbookList() {
+  const refreshCookbookList = () => {
     Api.getCookbooks((books) => {
       CookbookStore.setCookbooks(books);
-      this.setState({
-        cookbooks: books,
-        isLoading: false,
-      });
+      setCookbooks(books);
+      setIsLoading(false);
     });
-  }
+  };
 
-  render() {
-    const {
-      cookbooks, isLoading,
-    } = this.state;
+  useEffect(() => {
+    refreshCookbookList();
+  }, []);
 
     let cookbookTiles = [];
 
@@ -105,7 +90,6 @@ class CookbookList extends React.Component {
         </section>
       </div>
     );
-  }
-}
+};
 
 export default CookbookList;

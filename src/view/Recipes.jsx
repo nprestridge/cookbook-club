@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
@@ -10,45 +10,30 @@ const formatSlug = (text) => text
   .replace(/ /g, '-')
   .replace(/[^\w-]+/g, ''); // Remove leading/trailing dashes
 
-class Recipes extends React.Component {
-  constructor(props) {
-    super(props);
+const Recipes = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [allRecipes, setAllRecipes] = useState([]);
+  const [recipes, setRecipes] = useState([]);
+  const [modal, setModal] = useState(false);
+  const [activeRecipe, setActiveRecipe] = useState({});
+  const [searchTerm, setSearchTerm] = useState('');
 
-    this.state = {
-      isLoading: true,
-      allRecipes: [],
-      recipes: [],
-      modal: false,
-      activeRecipe: {},
-      searchTerm: '',
-    };
-
-    this.toggle = this.toggle.bind(this);
-    this.search = this.search.bind(this);
-    this.clearSearch = this.clearSearch.bind(this);
-  }
-
-  componentDidMount() {
-    Api.getRecipes((recipes) => {
-      this.setState({
-        allRecipes: recipes,
-        recipes,
-        isLoading: false,
-      });
+  useEffect(() => {
+    Api.getRecipes((fetchedRecipes) => {
+      setAllRecipes(fetchedRecipes);
+      setRecipes(fetchedRecipes);
+      setIsLoading(false);
     });
-  }
+  }, []);
 
-  toggle(activeRecipe) {
-    this.setState((prevState) => ({
-      modal: !prevState.modal,
-      activeRecipe,
-    }));
-  }
+  const toggle = (recipeToShow) => {
+    setModal(!modal);
+    setActiveRecipe(recipeToShow || {});
+  };
 
-  search(event) {
+  const search = (event) => {
     const input = event.target.value;
     const filter = input ? input.toLowerCase() : null;
-    const { allRecipes } = this.state;
 
     let filteredRecipes;
     if (filter) {
@@ -59,24 +44,14 @@ class Recipes extends React.Component {
       ));
     }
 
-    this.setState({
-      recipes: filteredRecipes || allRecipes,
-      searchTerm: input,
-    });
-  }
+    setRecipes(filteredRecipes || allRecipes);
+    setSearchTerm(input);
+  };
 
-  clearSearch() {
-    const { allRecipes } = this.state;
-    this.setState({
-      recipes: allRecipes,
-      searchTerm: '',
-    });
-  }
-
-  render() {
-    const {
-      recipes, isLoading, modal, activeRecipe, searchTerm,
-    } = this.state;
+  const clearSearch = () => {
+    setRecipes(allRecipes);
+    setSearchTerm('');
+  };
 
     const d = new Date();
     const year = d.getFullYear();
@@ -98,8 +73,8 @@ class Recipes extends React.Component {
               ? (
                 <span
                   className="recipe-list__camera-icon"
-                  onClick={() => this.toggle(recipe)}
-                  onKeyPress={() => this.toggle(recipe)}
+                  onClick={() => toggle(recipe)}
+                  onKeyPress={() => toggle(recipe)}
                   role="button"
                   tabIndex="0"
                   aria-label="View Recipe Photo"
@@ -147,14 +122,14 @@ class Recipes extends React.Component {
                       id="recipeSearch"
                       type="text"
                       value={searchTerm}
-                      onChange={this.search}
+                      onChange={search}
                       placeholder="Search recipes..."
                       aria-label="Search Recipes"
                     />
                     <span
                       className="input-group-text bg-transparent"
-                      onClick={this.clearSearch}
-                      onKeyDown={this.clearSearch}
+                      onClick={clearSearch}
+                      onKeyDown={clearSearch}
                       role="button"
                       aria-label="Clear search"
                       tabIndex="0"
@@ -174,8 +149,8 @@ class Recipes extends React.Component {
             </section>
           )}
 
-        <Modal isOpen={modal} toggle={this.toggle} className="recipe-image">
-          <ModalHeader toggle={this.toggle} className="recipe-image__header">{activeRecipe.name}</ModalHeader>
+        <Modal isOpen={modal} toggle={() => toggle()} className="recipe-image">
+          <ModalHeader toggle={() => toggle()} className="recipe-image__header">{activeRecipe.name}</ModalHeader>
           <ModalBody className="recipe-image__modal">
             <figure>
               <img
@@ -200,7 +175,6 @@ class Recipes extends React.Component {
         </Modal>
       </div>
     );
-  }
-}
+};
 
 export default Recipes;
