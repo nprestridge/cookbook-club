@@ -47,3 +47,9 @@ src/config/production.json
 # Compiled CSS
 src/**/*.css
 src/**/*.css.map
+
+# Playwright artifacts
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

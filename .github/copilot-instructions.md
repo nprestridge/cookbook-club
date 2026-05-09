@@ -88,10 +88,76 @@ src/
 - Example: `VITE_API_ENV=local` in `.env` file
 
 ### Testing
+
+#### Unit Tests (Vitest + React Testing Library)
 - **Vitest + React Testing Library** with jsdom environment
 - Global test functions enabled (describe, it, expect, beforeEach, etc.)
 - Setup file: `src/test/setup.js` (imports testing-library/jest-dom)
 - Test files co-located or in `src/tests/` directory
+- Vitest excludes `tests/e2e/` directory to prevent E2E test interference
+
+**Unit Test Patterns:**
+```javascript
+// Mocking API calls
+vi.mock('../controller/Api', () => ({
+  default: {
+    getCookbooks: vi.fn(),
+    getCookbookRecipes: vi.fn(),
+  }
+}));
+
+beforeEach(() => {
+  vi.clearAllMocks();
+});
+
+// Testing async components with promises (not done callbacks)
+test('loads data', async () => {
+  Api.getCookbooks.mockImplementation((cb) => {
+    cb([{ id: 1, title: 'Test' }]);
+  });
+  render(<CookbookList />);
+  await new Promise((resolve) => {
+    setTimeout(() => resolve(), 100);
+  });
+  expect(screen.getByText('Test')).toBeInTheDocument();
+});
+
+// Component testing with BrowserRouter
+render(
+  <BrowserRouter>
+    <Component />
+  </BrowserRouter>
+);
+```
+
+**Mocking Strategy:**
+- Mock Api.js and CookbookStore for component tests
+- Use `vi.mock()` (not jest.mock) for module mocking
+- Clear mocks in beforeEach to prevent test pollution
+- Mock fetch for controller tests directly
+
+#### E2E Tests (Playwright)
+- **Playwright** for end-to-end testing
+- Run with: `npm run test:e2e`
+- UI mode: `npm run test:e2e:ui`
+- Debug mode: `npm run test:e2e:debug`
+- Config: `playwright.config.js` (auto-starts dev server)
+- Tests in `tests/e2e/*.spec.js`
+
+**E2E Test Patterns:**
+```javascript
+import { test, expect } from '@playwright/test';
+
+test.describe('Feature', () => {
+  test('user flow', async ({ page }) => {
+    await page.goto('/');
+    await expect(page).toHaveTitle(/Expected Title/);
+    const link = page.locator('a:has-text("Text")');
+    await link.click();
+    await expect(page).toHaveURL('/expected-url');
+  });
+});
+```
 
 ### Code Quality
 - **ESLint**: Airbnb config with React plugin, custom rules:
