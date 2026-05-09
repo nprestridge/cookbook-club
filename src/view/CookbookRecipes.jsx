@@ -5,7 +5,7 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import Api from '../controller/Api';
 import Spinner from './Spinner';
 
-const CookbookRecipes = ({ params, author: propAuthor, title: propTitle }) => {
+function CookbookRecipes({ params = null, author: propAuthor = null, title: propTitle = null } = {}) {
   const [isLoading, setIsLoading] = useState(true);
   const [recipes, setRecipes] = useState([]);
   const [modal, setModal] = useState(false);
@@ -121,7 +121,7 @@ const CookbookRecipes = ({ params, author: propAuthor, title: propTitle }) => {
       </Modal>
     </div>
   );
-};
+}
 
 CookbookRecipes.propTypes = {
   params: PropTypes.shape({
@@ -130,12 +130,6 @@ CookbookRecipes.propTypes = {
   }),
   author: PropTypes.string,
   title: PropTypes.string,
-};
-
-CookbookRecipes.defaultProps = {
-  params: null,
-  author: null,
-  title: null,
 };
 
 export default CookbookRecipes;
