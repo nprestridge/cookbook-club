@@ -5,7 +5,9 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import Api from '../controller/Api';
 import Spinner from './Spinner';
 
-function CookbookRecipes({ params = null, author: propAuthor = null, title: propTitle = null } = {}) {
+function CookbookRecipes(
+  { params = null, author: propAuthor = null, title: propTitle = null } = {},
+) {
   const [isLoading, setIsLoading] = useState(true);
   const [recipes, setRecipes] = useState([]);
   const [modal, setModal] = useState(false);
