@@ -30,28 +30,46 @@ const cookbookRecipesApiMock = [
 ];
 
 async function mockApiRoutes(page) {
-  await page.route('**/**/dev/cookbooks', (route) => route.fulfill({
-    status: 200,
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify([]),
-  }));
+  await page.route('**/cookbooks', (route) => {
+    if (route.request().resourceType() === 'document') {
+      return route.fallback();
+    }
+    return route.fulfill({
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify([]),
+    });
+  });
 
-  await page.route('**/**/dev/recipes', (route) => route.fulfill({
-    status: 200,
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(recipesApiMock),
-  }));
+  await page.route('**/recipes', (route) => {
+    if (route.request().resourceType() === 'document') {
+      return route.fallback();
+    }
+    return route.fulfill({
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(recipesApiMock),
+    });
+  });
 
-  await page.route('**/**/dev/recipes/*/*', (route) => route.fulfill({
-    status: 200,
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(cookbookRecipesApiMock),
-  }));
+  await page.route('**/recipes/*/*', (route) => {
+    if (route.request().resourceType() === 'document') {
+      return route.fallback();
+    }
+    return route.fulfill({
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(cookbookRecipesApiMock),
+    });
+  });
 }
 
 test('recipes index shows cookbooks and supports navigation', async ({ page }) => {
   await mockApiRoutes(page);
   await page.goto('/recipes');
+
+  // Wait for page to fully load including API calls
+  await page.waitForLoadState('networkidle');
 
   // Page title should include 'Recipes'
   await expect(page).toHaveTitle(/Recipes/);
@@ -59,9 +77,6 @@ test('recipes index shows cookbooks and supports navigation', async ({ page }) =
   // Search input should exist
   const search = page.getByLabel('Search Recipes');
   await expect(search).toBeVisible();
-
-  // Wait for recipes to load (wait for spinner to disappear)
-  await page.waitForSelector('div.recipe-list__table', { state: 'visible' });
 
   // There should be at least one cookbook link
   const links = page.locator('a[href*="/recipes/"]');
