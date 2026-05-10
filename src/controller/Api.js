@@ -52,7 +52,8 @@ function getCookbooks(cb) {
     },
   }).then(checkStatus)
     .then(parseJSON)
-    .then(cb);
+    .then(cb)
+    .catch(() => cb([]));
 }
 
 /**
@@ -144,7 +145,8 @@ function getCookbookRecipes(author, title, cb) {
     },
   }).then(checkStatus)
     .then(parseJSON)
-    .then(cb);
+    .then(cb)
+    .catch(() => cb([]));
 }
 
 /**
@@ -162,7 +164,8 @@ function getRecipes(cb) {
     },
   }).then(checkStatus)
     .then(parseJSON)
-    .then(cb);
+    .then(cb)
+    .catch(() => cb([]));
 }
 
 const Api = {

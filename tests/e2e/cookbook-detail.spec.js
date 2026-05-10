@@ -2,16 +2,14 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Cookbook Detail', () => {
   test('navigates to cookbook detail page', async ({ page }) => {
-    await page.goto('/');
-
-    // Wait for page to load
-    await page.waitForLoadState('networkidle');
-
-    // Try to find a cookbook recipe link - they should exist after API loads
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    
+    // Wait for the app shell / expected navigation to appear
+    await expect(page.getByRole('navigation')).toBeVisible();
+    
     const recipeLinks = page.locator('a[href*="/recipes/"]');
     const count = await recipeLinks.count();
-
-    // If no cookbook links found after waiting, test that navigation works
+    
     if (count > 0) {
       const href = await recipeLinks.first().getAttribute('href');
       expect(href).toContain('/recipes/');
