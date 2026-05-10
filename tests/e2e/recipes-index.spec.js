@@ -10,6 +10,9 @@ test('recipes index shows cookbooks and supports navigation', async ({ page }) =
   const search = page.getByLabel('Search Recipes');
   await expect(search).toBeVisible();
 
+  // Wait for recipes to load (wait for spinner to disappear)
+  await page.waitForSelector('div.recipe-list__table', { state: 'visible' });
+
   // There should be at least one cookbook link
   const links = page.locator('a[href*="/recipes/"]');
   await expect(links.first()).toBeVisible();

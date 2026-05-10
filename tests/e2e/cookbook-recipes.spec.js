@@ -3,7 +3,10 @@ const { test, expect } = require('@playwright/test');
 test('cookbook page shows recipes and allows navigation back', async ({ page }) => {
   await page.goto('/recipes');
 
+  // Wait for recipe links to load
   const first = page.locator('a[href*="/recipes/"]').first();
+  await first.waitFor({ state: 'visible' });
+  
   await expect(first).toBeVisible();
   await first.click();
 
