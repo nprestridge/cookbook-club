@@ -2,6 +2,7 @@
   "name": "cookbook-club",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "engines": {
     "node": ">=22.0.0"
   },
@@ -47,6 +48,9 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:debug": "playwright test --debug",
+    "test:e2e:fast": "node scripts/test-fast.js --grep=\"@Mobile\"",
+    "test:e2e:ci": "playwright test --project=chromium --grep-invert=\"@Mobile\"",
+    "test:e2e:ci:mobile": "playwright test --project=chromium --grep=\"@Mobile\"",
     "test": "run-s test:lint-js test:lint-css test:unit"
   },
   "browserslist": [

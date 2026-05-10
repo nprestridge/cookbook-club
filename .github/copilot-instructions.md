@@ -11,11 +11,13 @@ npm run start              # Start dev server + watch SCSS (http://localhost:300
 ### Testing
 
 ```bash
-npm run test              # Run all tests: unit + lint
-npm run test:unit         # Vitest watch mode (default)
-npm run test:unit:ci      # Vitest single run (for CI/pre-commit)
+npm run test              # Run all tests: lint + unit
+npm run test:unit         # Vitest single run
 npm run test:lint-js      # ESLint JS/JSX files (src/**/*.{js,jsx})
 npm run test:lint-css     # Stylelint SCSS files
+npm run test:e2e          # Playwright E2E tests
+npm run test:e2e:ui       # Playwright UI mode
+npm run test:e2e:debug    # Playwright debug mode
 ```
 
 ### Building
@@ -27,7 +29,7 @@ npm run build:css         # Sass compile SCSS to CSS
 npm run watch:css         # Watch SCSS changes without build server
 ```
 
-**Single Test Run:** `npm run test:unit:ci -- src/tests/App.test.jsx`
+**Single Test Run:** `npm run test:unit -- src/tests/App.test.jsx`
 
 ## Architecture
 
@@ -75,6 +77,7 @@ src/
 ### React & Components
 
 - **Functional components with hooks only** — no class components
+- **ESM imports only** — use `import`/`export` syntax, not `require()`/`module.exports`
 - React auto-import enabled (react/react-in-jsx-scope: off)
 - JSX files can use `.js` or `.jsx` extensions (ESLint allows both)
 - Props are not validated with PropTypes in this codebase (dependency exists but unused)
@@ -94,9 +97,11 @@ src/
 
 ### Environment
 
+- **ESM project** — configured with `"type": "module"` in package.json
 - **VITE\_ prefix required** for client-side environment variables
 - Access via `import.meta.env.VITE_*` (Vite convention, not process.env)
 - Example: `VITE_API_ENV=local` in `.env` file
+- Use `import`/`export` syntax throughout the codebase
 
 ### Testing
 

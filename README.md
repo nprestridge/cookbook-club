@@ -29,6 +29,9 @@ React site to showcase cookbooks and recipes by the KoP Cookbook Club.
 - `npm run test:e2e` - Run E2E tests (Playwright)
 - `npm run test:e2e:ui` - Run E2E tests with UI mode
 - `npm run test:e2e:debug` - Run E2E tests in debug mode
+- `npm run test:e2e:fast` - Run E2E mobile tests with optimized settings
+- `npm run test:e2e:ci` - Run E2E tests for CI/CD pipeline (Chrome only, no mobile)
+- `npm run test:e2e:ci:mobile` - Run E2E mobile tests for full test report
 - `npm run test:lint-js` - Lint JavaScript/JSX files
 - `npm run test:lint-css` - Lint SCSS files
 
@@ -44,9 +47,14 @@ React site to showcase cookbooks and recipes by the KoP Cookbook Club.
    - Runs in watch mode for continuous testing
 
 3. **Run E2E tests**: `npm run test:e2e`
-   - Run once: `npx playwright install` to download the browser binaries
+   - Run once: `npx playwright install` to download browser binaries
    - Uses Playwright for end-to-end testing
    - Auto-starts dev server
+   
+   **Mobile Testing**: `npm run test:e2e:mobile` or `npm run test:e2e:fast`
+   - Tests mobile-specific functionality with iPhone 15 viewport
+   - Uses @Mobile tagged tests
+   - Fast mode optimized for development workflow
 
 4. **Lint code**: `npm run test:lint-js` and `npm run test:lint-css`
    - ESLint for JavaScript/JSX (Airbnb config)
@@ -61,6 +69,18 @@ React site to showcase cookbooks and recipes by the KoP Cookbook Club.
 - Use `VITE_` prefix for client-side environment variables (Vite convention)
 - Example: `VITE_API_ENV=local` in `.env` file
 - Access in code: `import.meta.env.VITE_API_ENV`
+
+### E2E Testing
+
+#### Mobile Testing
+- Mobile tests use `@Mobile` tag and iPhone 15 viewport (393x852)
+- Tests include touch interactions, responsive layout, and accessibility
+- Mock API data ensures consistent test results
+
+#### Test Scripts
+- `test:e2e:mobile` - Full mobile test suite (matches CircleCI)
+- `test:e2e:fast` - Optimized mobile tests for development
+- Both scripts require dev server to be running or use auto-started server
 
 ### Project Structure
 
