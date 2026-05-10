@@ -24,9 +24,8 @@ React site to showcase cookbooks and recipes by the KoP Cookbook Club.
 
 #### Testing
 
-- `npm run test` - Run all tests (unit + linting)
+- `npm run test` - Run tests (unit + linting), does not run E2E
 - `npm run test:unit` - Run unit tests in watch mode (Vitest)
-- `npm run test:unit:ci` - Run unit tests once (for CI)
 - `npm run test:e2e` - Run E2E tests (Playwright)
 - `npm run test:e2e:ui` - Run E2E tests with UI mode
 - `npm run test:e2e:debug` - Run E2E tests in debug mode
@@ -45,6 +44,7 @@ React site to showcase cookbooks and recipes by the KoP Cookbook Club.
    - Runs in watch mode for continuous testing
 
 3. **Run E2E tests**: `npm run test:e2e`
+   - Run once: `npx playwright install` to download the browser binaries
    - Uses Playwright for end-to-end testing
    - Auto-starts dev server
 
@@ -81,8 +81,8 @@ src/
 
 - **React 18** with functional components and hooks
 - **Vite** for fast development and building
-- **Vitest** + **React Testing Library** for unit testing (64 tests)
-- **Playwright** for end-to-end testing (10 tests)
+- **Vitest** + **React Testing Library** for unit testing
+- **Playwright** for end-to-end testing
 - **React Router v6** for routing
 - **Bootstrap v5** + **Sass/SCSS** for styling
 - **ESLint** + **Stylelint** for code quality

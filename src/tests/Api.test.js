@@ -5,6 +5,7 @@ import {
   beforeEach,
   vi,
 } from 'vitest';
+import { waitFor } from '@testing-library/react';
 import Api from '../controller/Api';
 
 // Mock global fetch
@@ -55,7 +56,7 @@ describe('Api', () => {
       });
     }));
 
-    it('calls callback with fetched data', () => new Promise((resolve) => {
+    it('calls callback with fetched data', async () => {
       const mockData = [
         { id: 1, title: 'Cookbook 1' },
         { id: 2, title: 'Cookbook 2' },
@@ -69,11 +70,10 @@ describe('Api', () => {
       const callback = vi.fn();
       Api.getCookbooks(callback);
 
-      setTimeout(() => {
+      await waitFor(() => {
         expect(callback).toHaveBeenCalledWith(mockData);
-        resolve();
-      }, 10);
-    }));
+      });
+    });
   });
 
   describe('getCookbookRecipes', () => {
