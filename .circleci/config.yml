@@ -30,7 +30,7 @@ jobs:
           paths:
             - ./node_modules
       # Install Playwright browsers for E2E tests
-      - run: npx playwright install --with-deps
+      - run: npx playwright install --with-deps chromium
       - run: npm run build
       - run: npm run test
       - run:
