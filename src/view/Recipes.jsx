@@ -38,9 +38,9 @@ function Recipes() {
     let filteredRecipes;
     if (filter) {
       filteredRecipes = allRecipes.filter((recipe) => (
-        recipe.name.toLowerCase().includes(filter)
-          || recipe.cookbook.toLowerCase().includes(filter)
-          || recipe.cook.toLowerCase().includes(filter)
+        (recipe.name && recipe.name.toLowerCase().includes(filter))
+          || (recipe.cookbook && recipe.cookbook.toLowerCase().includes(filter))
+          || (recipe.cook && recipe.cook.toLowerCase().includes(filter))
       ));
     }
 
@@ -63,7 +63,7 @@ function Recipes() {
 
   if (recipes) {
     recipeItems = recipes.map((recipe) => (
-      <div className="recipe-list__table recipe-list__row" role="row" key={recipe.name}>
+      <div className="recipe-list__table recipe-list__row" role="row" key={recipe.id}>
         <div className="recipe-list__item recipe-list__item--recipe" role="cell">
           {recipe.link
             ? <a href={recipe.link} target="_blank" rel="noopener noreferrer">{recipe.name}</a>
