@@ -71,9 +71,7 @@ test.describe('@Mobile Cookbook Recipes - Mobile Tests', () => {
     await page.waitForLoadState('networkidle');
 
     // Find recipe with image
-    const cameraIcons = page.locator('.recipe-list__camera-icon');
-    const iconCount = await cameraIcons.count();
-    
+    const cameraIcons = page.locator('.recipe-list__camera-icon');    
     const firstIcon = cameraIcons.first();
     await expect(firstIcon).toBeVisible();
     
@@ -164,9 +162,7 @@ test.describe('@Mobile Cookbook Recipes - Mobile Tests', () => {
     await page.waitForLoadState('networkidle');
 
     // Test touch on recipe items
-    const recipeRows = page.locator('.recipe-list__row');
-    const rowCount = await recipeRows.count();
-    
+    const recipeRows = page.locator('.recipe-list__row');    
     const firstRow = recipeRows.first();
     await firstRow.click();
     
@@ -195,14 +191,12 @@ test.describe('@Mobile Cookbook Recipes - Mobile Tests', () => {
 
     // Test semantic structure - check for any table or list
     const table = page.locator('table, [role="table"]');
-    const tableCount = await table.count();
-    if (tableCount > 0) {
-      await expect(table.first()).toBeVisible();
-      
-      const rows = table.first().locator('tr, [role="row"]');
-      const rowCount = await rows.count();
-      expect(rowCount).toBeGreaterThan(0);
-    }
+
+    await expect(table.first()).toBeVisible();
+    
+    const rows = table.first().locator('tr, [role="row"]');
+    const rowCount = await rows.count();
+    expect(rowCount).toBeGreaterThan(0);
   });
 
   test('mobile scroll behavior', async ({ page }) => {

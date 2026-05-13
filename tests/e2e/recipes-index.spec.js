@@ -84,35 +84,31 @@ test.describe('@Mobile Recipes Index - Mobile Tests', () => {
     await page.waitForLoadState('networkidle');
 
     // Find recipe with image
-    const cameraIcons = page.locator('.recipe-list__camera-icon');
-    const iconCount = await cameraIcons.count();
+    const cameraIcons = page.locator('.recipe-list__camera-icon');    
+    const firstIcon = cameraIcons.first();
+    await expect(firstIcon).toBeVisible();
     
-    if (iconCount > 0) {
-      const firstIcon = cameraIcons.first();
-      await expect(firstIcon).toBeVisible();
-      
-      // Click to open modal
-      await firstIcon.click(); // Use tap for mobile
-      await page.waitForTimeout(500); // Wait for modal animation
-      
-      // Verify modal is open
-      const modal = page.locator('.modal');
-      await expect(modal).toBeVisible();
-      
-      // Verify modal content
-      const modalImage = modal.locator('img');
-      await expect(modalImage).toBeVisible();
-      
-      // Close modal
-      const closeButton = page.locator('.modal-header .close, .modal .close, button.close, [aria-label="Close"]');
-      if (await closeButton.isVisible()) {
-        await closeButton.click();
-        await expect(modal).not.toBeVisible();
-      } else {
-        // Alternative: press Escape key to close modal
-        await page.keyboard.press('Escape');
-        await expect(modal).not.toBeVisible();
-      }
+    // Click to open modal
+    await firstIcon.click(); // Use tap for mobile
+    await page.waitForTimeout(500); // Wait for modal animation
+    
+    // Verify modal is open
+    const modal = page.locator('.modal');
+    await expect(modal).toBeVisible();
+    
+    // Verify modal content
+    const modalImage = modal.locator('img');
+    await expect(modalImage).toBeVisible();
+    
+    // Close modal
+    const closeButton = page.locator('.modal-header .close, .modal .close, button.close, [aria-label="Close"]');
+    if (await closeButton.isVisible()) {
+      await closeButton.click();
+      await expect(modal).not.toBeVisible();
+    } else {
+      // Alternative: press Escape key to close modal
+      await page.keyboard.press('Escape');
+      await expect(modal).not.toBeVisible();
     }
   });
 
@@ -137,20 +133,17 @@ test.describe('@Mobile Recipes Index - Mobile Tests', () => {
 
     // Find cookbook links
     const cookbookLinks = page.locator('a[href*="/recipes/"]');
-    const linkCount = await cookbookLinks.count();
     
-    if (linkCount > 0) {
-      const firstLink = cookbookLinks.first();
-      await expect(firstLink).toBeVisible();
-      
-      // Test tap navigation on mobile
-      await firstLink.click();
-      await expect(page).toHaveURL(/\/recipes\/.+/);
-      
-      // Verify navigation worked
-      const header = page.locator('.cookbook-header');
-      await expect(header).toBeVisible();
-    }
+    const firstLink = cookbookLinks.first();
+    await expect(firstLink).toBeVisible();
+    
+    // Test tap navigation on mobile
+    await firstLink.click();
+    await expect(page).toHaveURL(/\/recipes\/.+/);
+    
+    // Verify navigation worked
+    const header = page.locator('.cookbook-header');
+    await expect(header).toBeVisible();
   });
 
   test('mobile scroll behavior', async ({ page }) => {

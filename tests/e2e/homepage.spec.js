@@ -130,19 +130,17 @@ test.describe('@Mobile Homepage - Mobile Tests', () => {
 
     // Verify cookbook items stack vertically on mobile
     const cookbookItems = page.locator('.cookbook-item');
-    const count = await cookbookItems.count();
+
+    // Check that items are displayed in a single column
+    const firstItem = cookbookItems.first();
+    const firstItemBox = await firstItem.boundingBox();
     
-    if (count > 1) {
-      // Check that items are displayed in a single column
-      const firstItem = cookbookItems.first();
-      const firstItemBox = await firstItem.boundingBox();
-      
-      const secondItem = cookbookItems.nth(1);
-      const secondItemBox = await secondItem.boundingBox();
-      
-      // Items should be stacked vertically (second below first)
-      expect(secondItemBox.y).toBeGreaterThan(firstItemBox.y + firstItemBox.height);
-    }
+    const secondItem = cookbookItems.nth(1);
+    const secondItemBox = await secondItem.boundingBox();
+    
+    // Items should be stacked vertically (second below first)
+    expect(secondItemBox.y).toBeGreaterThan(firstItemBox.y + firstItemBox.height);
+
   });
 
   test('mobile external links work correctly', async ({ page }) => {

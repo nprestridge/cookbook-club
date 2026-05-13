@@ -9,9 +9,7 @@ test.describe('Cookbook Detail', () => {
     // Wait for the app shell / expected navigation to appear
     await expect(page.getByRole('navigation')).toBeVisible();
     
-    const recipeLinks = page.locator('a[href*="/recipes/"]');
-    const count = await recipeLinks.count();
-    
+    const recipeLinks = page.locator('a[href*="/recipes/"]');    
     const href = await recipeLinks.first().getAttribute('href');
     expect(href).toContain('/recipes/');
   });
@@ -57,8 +55,6 @@ test.describe('@Mobile Cookbook Detail - Mobile Tests', () => {
 
     // Find and click cookbook link
     const recipeLinks = page.locator('a[href*="/recipes/"]');
-    await recipeLinks.count();
-    
     const firstLink = recipeLinks.first();
     await expect(firstLink).toBeVisible();
     
@@ -78,8 +74,6 @@ test.describe('@Mobile Cookbook Detail - Mobile Tests', () => {
 
     // Navigate to cookbook detail
     const recipeLinks = page.locator('a[href*="/recipes/"]');
-    await recipeLinks.count();
-    
     const firstLink = recipeLinks.first();
     await firstLink.click();
     await page.waitForLoadState('networkidle');
@@ -102,8 +96,6 @@ test.describe('@Mobile Cookbook Detail - Mobile Tests', () => {
 
     // Navigate to cookbook detail
     const recipeLinks = page.locator('a[href*="/recipes/"]');
-    await recipeLinks.count();
-    
     const firstLink = recipeLinks.first();
     await firstLink.click();
     await page.waitForLoadState('networkidle');
@@ -127,8 +119,6 @@ test.describe('@Mobile Cookbook Detail - Mobile Tests', () => {
 
     // Navigate to cookbook detail
     const recipeLinks = page.locator('a[href*="/recipes/"]');
-    await recipeLinks.count();
-    
     const firstLink = recipeLinks.first();
     await firstLink.click();
     await page.waitForLoadState('networkidle');
@@ -155,8 +145,6 @@ test.describe('@Mobile Cookbook Detail - Mobile Tests', () => {
 
     // Navigate to cookbook detail
     const recipeLinks = page.locator('a[href*="/recipes/"]');
-    await recipeLinks.count();
-    
     const firstLink = recipeLinks.first();
     await firstLink.click();
     await page.waitForLoadState('networkidle');
@@ -183,8 +171,6 @@ test.describe('@Mobile Cookbook Detail - Mobile Tests', () => {
 
     // Navigate to cookbook detail
     const recipeLinks = page.locator('a[href*="/recipes/"]');
-    const count = await recipeLinks.count();
-  
     const firstLink = recipeLinks.first();
     await firstLink.click();
     await page.waitForLoadState('networkidle');
