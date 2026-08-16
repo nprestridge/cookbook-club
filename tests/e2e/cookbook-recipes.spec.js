@@ -125,23 +125,14 @@ test.describe('@Mobile Cookbook Recipes - Mobile Tests', () => {
 
   test('mobile empty state handling', async ({ page }) => {
     await setMobileViewport(page);
-    // Mock empty response
-    await page.route('**/recipes/*/*', (route) => {
-      if (route.request().resourceType() === 'document') {
-        return route.fallback();
-      }
-      return route.fulfill({
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify([]),
-      });
-    });
+    await mockApiRoutes(page, undefined, []);
 
     await page.goto('/recipes');
     await page.waitForLoadState('networkidle');
 
     // Navigate to cookbook with no recipes
     const cookbookLinks = page.locator('a[href*="/recipes/"]');
+    await expect(cookbookLinks.first()).toBeVisible();
     await cookbookLinks.first().click();
     await page.waitForLoadState('networkidle');
 
