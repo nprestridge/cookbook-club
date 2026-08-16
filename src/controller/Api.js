@@ -57,6 +57,23 @@ function getCookbooks(cb) {
 }
 
 /**
+ * Get list of future idea cookbooks (drafts)
+ * Publicly accessible endpoint that requests includeDrafts=true
+ */
+function getFutureIdeas(cb) {
+  return fetch(`${PROXY}cookbooks?includeDrafts=true`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': API_KEY,
+    },
+  }).then(checkStatus)
+    .then(parseJSON)
+    .then(cb)
+    .catch(() => cb([]));
+}
+
+/**
  * Update cookbook
  *
  * @param  {string}   title  Cookbook title
@@ -169,7 +186,7 @@ function getRecipes(cb) {
 }
 
 const Api = {
-  getCookbooks, updateCookbook, deleteCookbook, getCookbookRecipes, getRecipes,
+  getCookbooks, getFutureIdeas, updateCookbook, deleteCookbook, getCookbookRecipes, getRecipes,
 };
 
 export default Api;

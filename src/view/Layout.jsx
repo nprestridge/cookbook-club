@@ -49,6 +49,10 @@ function Layout() {
         {year}
         &nbsp;Nancy&apos;s Hearth.  All rights reserved.
       </footer>
+
+      <div className="footer__future-ideas">
+        <Link to="/future-ideas">Future Ideas</Link>
+      </div>
     </div>
   );
 }

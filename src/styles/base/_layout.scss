@@ -65,6 +65,12 @@ nav {
   display: flex;
 }
 
+.footer__future-ideas {
+  padding: .5em 1em;
+  font-size: .75em;
+  text-align: right;
+}
+
 @media screen and (max-width: $mq-xxsmall) {
   .logo {
     width: 90%;

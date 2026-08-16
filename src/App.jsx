@@ -12,6 +12,7 @@ import CookbookList from './view/CookbookList';
 import CookbookRecipes from './view/CookbookRecipes';
 import Recipes from './view/Recipes';
 import Spinner from './view/Spinner';
+import FutureIdeas from './view/FutureIdeas';
 import Api from './controller/Api';
 import CookbookStore from './controller/CookbookStore';
 
@@ -44,6 +45,7 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<CookbookList />} />
+        <Route path="future-ideas" element={<FutureIdeas />} />
         <Route path="recipes">
           <Route index element={<Recipes />} />
           <Route path=":slug" element={<CookbookRecipesRoute />} />
